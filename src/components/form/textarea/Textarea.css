@@ -1,0 +1,22 @@
+.pachakui-textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.pachakui-textarea {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-graphite);
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    color: var(--color-charcoal);
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.2s ease;
+}
+
+.pachakui-textarea:focus {
+    border-color: var(--color-synkuy-blue);
+    outline: none;
+}

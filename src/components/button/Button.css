@@ -1,0 +1,47 @@
+.pachakui-button {
+    font-family: 'Inter', sans-serif;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 0.5rem 1rem;
+  }
+  
+  .pachakui-button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .pachakui-button:active {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  
+  /* Variants */
+  .pachakui-button.primary {
+    background-color: #4887FB;
+    color: white;
+  }
+  
+  .pachakui-button.secondary {
+    background-color: #F6F8FA;
+    color: #222F3E;
+    border: 1px solid #E0E0E0;
+  }
+  
+  /* Sizes */
+  .pachakui-button.sm {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .pachakui-button.md {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .pachakui-button.lg {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.25rem;
+  }
+  

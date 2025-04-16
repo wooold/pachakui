@@ -1,0 +1,12 @@
+.pachakui-radio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.pachakui-radio input[type='radio'] {
+    accent-color: var(--color-primary, #3b82f6);
+    width: 1rem;
+    height: 1rem;
+}

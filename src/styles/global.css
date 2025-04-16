@@ -1,0 +1,62 @@
+/* Reset de margen y paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tipografía base */
+html {
+  font-size: 16px;
+  /* base para usar rem si deseas */
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-silver);
+  color: var(--color-charcoal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* A11y: elementos interactivos claros */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Clase de utilidad opcional */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Typography: Labels */
+.pachakui-label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.875rem;
+  /* 14px */
+  color: var(--pachakui-text, #222F3E);
+  margin-bottom: 0.25rem;
+  /* 4px */
+}
