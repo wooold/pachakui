@@ -7,36 +7,38 @@ const meta: Meta<typeof RadioButton> = {
     component: RadioButton,
     tags: ['autodocs'],
 };
+
 export default meta;
 type Story = StoryObj<typeof RadioButton>;
 
 export const Default: Story = {
-    args: {
-        label: 'Opción A',
-        name: 'example',
-        value: 'a',
-        checked: false,
-    },
-};
+    render: () => {
+        const [selected, setSelected] = useState('option1');
 
-export const Interactive = () => {
-    const [selected, setSelected] = useState('a');
-    return (
-        <>
-            <RadioButton
-                label="Opción A"
-                name="group"
-                value="a"
-                checked={selected === 'a'}
-                onChange={setSelected}
-            />
-            <RadioButton
-                label="Opción B"
-                name="group"
-                value="b"
-                checked={selected === 'b'}
-                onChange={setSelected}
-            />
-        </>
-    );
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <RadioButton
+                    label="Opción 1"
+                    name="demo"
+                    value="option1"
+                    checked={selected === 'option1'}
+                    onChange={setSelected}
+                />
+                <RadioButton
+                    label="Opción 2"
+                    name="demo"
+                    value="option2"
+                    checked={selected === 'option2'}
+                    onChange={setSelected}
+                />
+                <RadioButton
+                    label="Opción 3"
+                    name="demo"
+                    value="option3"
+                    checked={selected === 'option3'}
+                    onChange={setSelected}
+                />
+            </div>
+        );
+    },
 };

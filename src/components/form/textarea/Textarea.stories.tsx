@@ -7,7 +7,6 @@ const meta: Meta<typeof Textarea> = {
     tags: ['autodocs'],
     args: {
         id: 'textarea-1',
-        label: 'Mensaje',
         placeholder: 'Cuéntanos tu historia...',
     },
 };

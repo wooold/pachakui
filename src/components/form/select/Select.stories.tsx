@@ -12,7 +12,6 @@ type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
     args: {
-        label: 'Color de conexión',
         options: [
             { label: 'Azul', value: 'blue' },
             { label: 'Rojo', value: 'red' },

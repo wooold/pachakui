@@ -2,7 +2,6 @@ import './Textarea.css';
 
 export type TextareaProps = {
     id?: string;
-    label?: string;
     placeholder?: string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -11,7 +10,6 @@ export type TextareaProps = {
 
 export const Textarea = ({
     id,
-    label,
     placeholder = '',
     value,
     onChange,
@@ -19,11 +17,6 @@ export const Textarea = ({
 }: TextareaProps) => {
     return (
         <div className="pachakui-textarea-wrapper">
-            {label && (
-                <label htmlFor={id} className="pachakui-label">
-                    {label}
-                </label>
-            )}
             <textarea
                 id={id}
                 className="pachakui-textarea"

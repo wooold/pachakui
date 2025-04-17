@@ -3,7 +3,7 @@ import './Button.css';
 export type ButtonProps = {
   label: string;
   onClick?: () => void;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'success' | 'info' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
 };
 
@@ -12,8 +12,11 @@ export const Button = ({
   onClick,
   variant = 'primary',
   size = 'md',
-}: ButtonProps) => (
-  <button className={`pachakui-button ${variant} ${size}`} onClick={onClick}>
-    {label}
-  </button>
-);
+}: ButtonProps) => {
+  const className = `pachakui-button ${variant} ${size}`;
+  return (
+    <button className={className} onClick={onClick}>
+      {label}
+    </button>
+  );
+};

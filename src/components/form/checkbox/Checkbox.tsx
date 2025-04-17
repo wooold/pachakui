@@ -1,30 +1,25 @@
 import './Checkbox.css';
 
-export type CheckboxProps = {
-    id?: string;
+type CheckboxProps = {
     label: string;
-    checked?: boolean;
+    checked: boolean;
     onChange?: (checked: boolean) => void;
     disabled?: boolean;
 };
 
 export const Checkbox = ({
     label,
-    checked = false,
-    disabled = false,
+    checked,
     onChange,
+    disabled = false,
 }: CheckboxProps) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(e.target.checked);
-    };
-
     return (
-        <label className="pachakui-checkbox">
+        <label className="checkbox-container">
             <input
                 type="checkbox"
                 checked={checked}
+                onChange={(e) => onChange?.(e.target.checked)}
                 disabled={disabled}
-                onChange={handleChange}
             />
             <span>{label}</span>
         </label>

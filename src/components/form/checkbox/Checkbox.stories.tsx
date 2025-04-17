@@ -12,25 +12,15 @@ export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
-    args: {
-        label: 'Acepto los términos',
-        checked: false,
-    },
-};
+    render: () => {
+        const [checked, setChecked] = useState(false);
 
-export const Checked: Story = {
-    args: {
-        label: 'Estoy de acuerdo',
-        checked: true,
+        return (
+            <Checkbox
+                label="Acepto los términos y condiciones"
+                checked={checked}
+                onChange={(value) => setChecked(value)}
+            />
+        );
     },
-};
-export const Interactive = () => {
-    const [checked, setChecked] = useState(false);
-    return (
-        <Checkbox
-            label="Soy interactivo ✨"
-            checked={checked}
-            onChange={setChecked}
-        />
-    );
 };

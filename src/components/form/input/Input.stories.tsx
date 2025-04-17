@@ -7,7 +7,6 @@ const meta: Meta<typeof Input> = {
     tags: ['autodocs'],
     args: {
         id: 'example-input',
-        label: 'Nombre',
         placeholder: 'Ingresa tu nombre',
     },
 };
@@ -16,8 +15,3 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {};
-export const WithValue: Story = {
-    args: {
-        value: 'Synkuy ❤️',
-    },
-};

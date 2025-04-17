@@ -1,20 +1,21 @@
 import './Select.css';
 
+// Tipo para cada opción del dropdown
 export type Option = {
     label: string;
     value: string;
 };
 
+// Props del componente Select
 export type SelectProps = {
-    label?: string;
     options: Option[];
     value?: string;
     onChange?: (value: string) => void;
     disabled?: boolean;
 };
 
+// El componente ya no renderiza <label>, eso lo hará FormField
 export const Select = ({
-    label,
     options,
     value,
     onChange,
@@ -26,7 +27,6 @@ export const Select = ({
 
     return (
         <div className="pachakui-select-wrapper">
-            {label && <label className="pachakui-label">{label}</label>}
             <select
                 className="pachakui-select"
                 value={value}
