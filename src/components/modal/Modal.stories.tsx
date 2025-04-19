@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from './Modal';
-import { Button } from '@/components/button';
+import { Button } from '../button/Button';
 
 const meta: Meta<typeof Modal> = {
-    title: 'Components/Modal',
+    title: 'Components/Overlay/Modal',
     component: Modal,
     tags: ['autodocs'],
 };
@@ -12,15 +12,17 @@ const meta: Meta<typeof Modal> = {
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
-export const Interactive: Story = {
+export const Default: Story = {
     render: () => {
-        const [open, setOpen] = useState(false);
+        const [isOpen, setIsOpen] = useState(false);
+
         return (
             <>
-                <Button label="Abrir Modal" onClick={() => setOpen(true)} />
-                <Modal isOpen={open} onClose={() => setOpen(false)}>
-                    <h2>¡Hola desde Pachakui!</h2>
-                    <p>Este es un modal bonito, con animación y cierre inteligente ✨</p>
+                <Button label="Abrir Modal" onClick={() => setIsOpen(true)} />
+
+                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+                    <h2 style={{ marginBottom: '1rem' }}>Este es un modal ✨</h2>
+                    <p>Puedes hacer clic fuera para cerrarlo, o agregar botones aquí dentro.</p>
                 </Modal>
             </>
         );

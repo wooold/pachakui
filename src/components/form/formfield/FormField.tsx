@@ -1,23 +1,52 @@
-export * from './FormField';
-// src/components/form/formfield/FormField.tsx
-import './FormField.css';
+import { ReactNode } from 'react';
+import { typography, colors, spacing } from '@/tokens';
 
-export type FormFieldProps = {
+type FormFieldProps = {
     label?: string;
     hint?: string;
     error?: string;
-    children: React.ReactNode;
+    children: ReactNode;
+    id?: string;
 };
 
-export const FormField = ({ label, hint, error, children }: FormFieldProps) => {
+export const FormField = ({ label, hint, error, children, id }: FormFieldProps) => {
     return (
-        <div className="pachakui-form-field">
-            {label && <label className="pachakui-form-label">{label}</label>}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.xs }}>
+            {label && (
+                <label
+                    htmlFor={id}
+                    style={{
+                        fontSize: typography.fontSize.sm,
+                        fontWeight: typography.fontWeight.medium,
+                        color: colors.text.primary,
+                    }}
+                >
+                    {label}
+                </label>
+            )}
+
             {children}
-            {error ? (
-                <div className="pachakui-form-error">{error}</div>
-            ) : (
-                hint && <div className="pachakui-form-hint">{hint}</div>
+
+            {hint && !error && (
+                <span
+                    style={{
+                        fontSize: typography.fontSize.sm,
+                        color: colors.text.muted,
+                    }}
+                >
+                    {hint}
+                </span>
+            )}
+
+            {error && (
+                <span
+                    style={{
+                        fontSize: typography.fontSize.sm,
+                        color: colors.feedback.error,
+                    }}
+                >
+                    {error}
+                </span>
             )}
         </div>
     );

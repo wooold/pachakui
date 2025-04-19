@@ -1,45 +1,51 @@
-// Importamos los tipos necesarios para definir las historias de Storybook.
 import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '../../Button';
+import { FcGoogle } from 'react-icons/fc';
+import { FaArrowRight } from 'react-icons/fa';
 
-// Importamos el componente base Button desde la ruta correspondiente.
-import { Button } from '@/components/button';
-
-// Definimos la configuración general de Storybook para esta historia.
 const meta: Meta<typeof Button> = {
-    // Nombre que aparecerá en el sidebar de Storybook
     title: 'Components/Button/Action',
-    // Componente a documentar
     component: Button,
-    // Tags útiles para addons de documentación
     tags: ['autodocs'],
 };
 
 export default meta;
-
-// Definimos el tipo base para nuestras historias.
 type Story = StoryObj<typeof Button>;
 
-// Cada historia representa una variación del componente Button
+// 🔹 Variante base primaria
 export const Primary: Story = {
     args: {
-        label: 'Primary',
+        label: 'Continuar',
         variant: 'primary',
         size: 'md',
     },
 };
 
+// 🔹 Variante secundaria simple
 export const Secondary: Story = {
     args: {
-        label: 'Secondary',
+        label: 'Continuar con Google',
         variant: 'secondary',
         size: 'md',
     },
 };
 
-export const Ghost: Story = {
+// 🔹 Botón con ícono a la izquierda (ideal para login social)
+export const WithLeftIcon: Story = {
     args: {
-        label: 'Ghost',
-        variant: 'ghost',
+        label: 'Continuar con Google',
+        variant: 'secondary',
         size: 'md',
+        iconLeft: <FcGoogle />, // Usa el ícono de Google
+    },
+};
+
+// 🔹 Botón con ícono a la derecha (por ejemplo: navegación)
+export const WithRightIcon: Story = {
+    args: {
+        label: 'Siguiente',
+        variant: 'primary',
+        size: 'md',
+        iconRight: <FaArrowRight />, // Usa una flecha para avanzar
     },
 };

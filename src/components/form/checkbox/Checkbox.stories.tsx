@@ -19,7 +19,7 @@ export const Default: Story = {
             <Checkbox
                 label="Acepto los términos y condiciones"
                 checked={checked}
-                onChange={(value) => setChecked(value)}
+                onChange={setChecked}
             />
         );
     },

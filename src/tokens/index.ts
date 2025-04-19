@@ -1,15 +1,10 @@
-import colors from './colors';
-import typography from './typography';
-import spacing from './spacing';
-import border from './border';
-import shadow from './shadow';
+/**
+ * 🎯 Design Tokens - Entry Point
+ * Reexporta todos los tokens desde un solo lugar
+ */
 
-const tokens = {
-  colors,
-  typography,
-  spacing,
-  border,
-  shadow,
-};
-
-export default tokens;
+export * from './colors';
+export * from './typography';
+export * from './spacing';
+export * from './border';
+export * from './shadow';

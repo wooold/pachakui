@@ -1,12 +1,18 @@
-const spacing = {
-    none: '0',
-    xs: '4px',
-    sm: '8px',
-    md: '16px',
-    lg: '24px',
-    xl: '32px',
-    '2xl': '40px',
-  };
-  
-  export default spacing;
-  
+/**
+ * 📏 Design Tokens - Spacing
+ * Escala coherente basada en múltiplos de 4px
+ * Usada para paddings, margins, gaps, etc.
+ */
+
+export const spacing = {
+  none: '0px',
+  xs: '4px',       // Extra small
+  sm: '8px',       // Small
+  smPlus: '12px',  // Small Plus – útil para componentes con más contenido
+  md: '16px',      // Medium
+  mdPlus: '20px',  // Medium Plus – común en botones grandes con íconos
+  lg: '24px',      // Large
+  xl: '32px',      // Extra large
+  '2xl': '40px',
+  '3xl': '48px',
+};

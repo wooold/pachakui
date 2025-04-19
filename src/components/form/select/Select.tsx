@@ -1,44 +1,52 @@
-import './Select.css';
+import { ChangeEvent } from 'react';
+import { colors, spacing, typography, borders } from '@/tokens';
 
-// Tipo para cada opción del dropdown
-export type Option = {
+type Option = {
     label: string;
     value: string;
 };
 
-// Props del componente Select
-export type SelectProps = {
+type SelectProps = {
+    id?: string;
+    value: string;
+    onChange: (value: string) => void;
     options: Option[];
-    value?: string;
-    onChange?: (value: string) => void;
     disabled?: boolean;
 };
 
-// El componente ya no renderiza <label>, eso lo hará FormField
 export const Select = ({
-    options,
+    id,
     value,
     onChange,
+    options,
     disabled = false,
 }: SelectProps) => {
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        onChange?.(e.target.value);
-    };
-
     return (
-        <div className="pachakui-select-wrapper">
-            <select
-                className="pachakui-select"
-                value={value}
-                onChange={handleChange}
-                disabled={disabled}
-            >
-                {options.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                    </option>
-                ))}
-            </select>
-        </div>
+        <select
+            id={id}
+            value={value}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
+            disabled={disabled}
+            style={{
+                width: '100%',
+                padding: `${spacing.sm} ${spacing.md}`,
+                fontFamily: typography.fontFamily.base,
+                fontSize: typography.fontSize.md,
+                fontWeight: typography.fontWeight.normal,
+                lineHeight: typography.lineHeight.normal,
+                color: colors.text.primary,
+                backgroundColor: colors.neutral.white,
+                border: `1px solid ${colors.neutral.border}`,
+                borderRadius: borders.radius.md,
+                outline: 'none',
+                transition: 'border-color 0.2s ease-in-out',
+            }}
+        >
+            {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                </option>
+            ))}
+        </select>
     );
 };

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Select } from './Select';
 
@@ -11,12 +12,21 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
-    args: {
-        options: [
-            { label: 'Azul', value: 'blue' },
-            { label: 'Rojo', value: 'red' },
-            { label: 'Verde', value: 'green' },
-        ],
-        value: 'blue',
+    render: () => {
+        const [value, setValue] = useState('peru');
+
+        const options = [
+            { label: 'Perú', value: 'peru' },
+            { label: 'México', value: 'mexico' },
+            { label: 'Argentina', value: 'argentina' },
+        ];
+
+        return (
+            <Select
+                value={value}
+                onChange={setValue}
+                options={options}
+            />
+        );
     },
 };

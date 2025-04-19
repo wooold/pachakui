@@ -1,32 +1,28 @@
-import { mergeConfig } from 'vite';
-import path from 'path';
+import { fileURLToPath } from 'url';
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  stories: [
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
+    '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-onboarding',
-    '@chromatic-com/storybook',
-    '@storybook/experimental-addon-test',
+    '@storybook/addon-interactions',
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
+  docs: {
+    autodocs: 'tag',
+  },
   viteFinal: async (config) => {
-    return mergeConfig(config, {
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '../src'),
-          '@styles': path.resolve(__dirname, '../src/styles'),
-          '@tokens': path.resolve(__dirname, '../src/tokens'),
-        },
-      },
-    });
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': fileURLToPath(new URL('../src', import.meta.url)),
+      '@styles': fileURLToPath(new URL('../src/styles', import.meta.url)),
+      '@tokens': fileURLToPath(new URL('../src/tokens', import.meta.url)),
+    };
+    return config;
   },
 };
 

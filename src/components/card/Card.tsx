@@ -1,25 +1,29 @@
-import './Card.css';
+import { borders, colors, spacing, shadows } from '@/tokens';
 import { ReactNode } from 'react';
 
-export type CardProps = {
+type CardProps = {
     children: ReactNode;
-    shadow?: 'sm' | 'md' | 'lg';
-    padding?: 'sm' | 'md' | 'lg';
-    bordered?: boolean;
+    padding?: keyof typeof spacing;
+    shadow?: keyof typeof shadows;
+    backgroundColor?: string;
 };
 
 export const Card = ({
     children,
-    shadow = 'md',
     padding = 'md',
-    bordered = false,
+    shadow = 'md',
+    backgroundColor = colors.neutral.white,
 }: CardProps) => {
-    const classes = [
-        'pachakui-card',
-        `shadow-${shadow}`,
-        `padding-${padding}`,
-        bordered ? 'bordered' : '',
-    ].join(' ');
-
-    return <div className={classes}>{children}</div>;
+    return (
+        <div
+            style={{
+                backgroundColor,
+                padding: spacing[padding],
+                borderRadius: borders.radius.lg,
+                boxShadow: shadows[shadow],
+            }}
+        >
+            {children}
+        </div>
+    );
 };

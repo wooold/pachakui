@@ -1,36 +1,47 @@
-import './RadioButton.css';
+import { colors, spacing, typography } from '@/tokens';
 
-export type RadioButtonProps = {
-    id?: string;
-    name: string;
+type RadioButtonProps = {
     label: string;
+    name: string;
     value: string;
-    checked?: boolean;
-    disabled?: boolean;
+    checked: boolean;
     onChange?: (value: string) => void;
+    disabled?: boolean;
 };
 
 export const RadioButton = ({
-    id,
-    name,
     label,
+    name,
     value,
-    checked = false,
-    disabled = false,
+    checked,
     onChange,
+    disabled = false,
 }: RadioButtonProps) => {
-    const generatedId = id || `radio-${name}-${value}`;
-
     return (
-        <label className="pachakui-radio">
+        <label
+            style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: spacing.xs,
+                fontFamily: typography.fontFamily.base,
+                fontSize: typography.fontSize.md,
+                color: colors.text.primary,
+                cursor: disabled ? 'not-allowed' : 'pointer',
+            }}
+        >
             <input
                 type="radio"
-                id={generatedId}
                 name={name}
                 value={value}
                 checked={checked}
                 onChange={() => onChange?.(value)}
                 disabled={disabled}
+                style={{
+                    width: '16px',
+                    height: '16px',
+                    accentColor: colors.brand.primary,
+                    cursor: disabled ? 'not-allowed' : 'pointer',
+                }}
             />
             <span>{label}</span>
         </label>

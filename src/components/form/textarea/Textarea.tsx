@@ -1,31 +1,46 @@
-import './Textarea.css';
+import { ChangeEvent } from 'react';
+import { colors, spacing, typography, borders } from '@/tokens';
 
-export type TextareaProps = {
+type TextareaProps = {
     id?: string;
+    value: string;
+    onChange: (value: string) => void;
     placeholder?: string;
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     disabled?: boolean;
+    rows?: number;
 };
 
 export const Textarea = ({
     id,
-    placeholder = '',
     value,
     onChange,
+    placeholder = '',
     disabled = false,
+    rows = 4,
 }: TextareaProps) => {
     return (
-        <div className="pachakui-textarea-wrapper">
-            <textarea
-                id={id}
-                className="pachakui-textarea"
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                rows={4}
-            />
-        </div>
+        <textarea
+            id={id}
+            value={value}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+            placeholder={placeholder}
+            disabled={disabled}
+            rows={rows}
+            style={{
+                width: '100%',
+                padding: `${spacing.sm} ${spacing.md}`,
+                fontFamily: typography.fontFamily.base,
+                fontSize: typography.fontSize.md,
+                fontWeight: typography.fontWeight.normal,
+                lineHeight: typography.lineHeight.normal,
+                color: colors.text.primary,
+                backgroundColor: colors.neutral.white,
+                border: `1px solid ${colors.neutral.border}`,
+                borderRadius: borders.radius.md,
+                resize: 'vertical',
+                outline: 'none',
+                transition: 'border-color 0.2s ease-in-out',
+            }}
+        />
     );
 };

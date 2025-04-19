@@ -1,28 +1,42 @@
-import './Input.css';
+import { ChangeEvent } from 'react';
+import { colors, spacing, typography, borders } from '@/tokens';
 
-export type InputProps = {
+type InputProps = {
     id?: string;
+    value: string;
+    onChange: (value: string) => void;
     placeholder?: string;
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
 };
 
-// Este input ahora está 100% limpio y no incluye label interno.
 export const Input = ({
     id,
-    placeholder = '',
     value,
     onChange,
+    placeholder = '',
+    disabled = false,
 }: InputProps) => {
     return (
-        <div className="pachakui-input-wrapper">
-            <input
-                id={id}
-                className="pachakui-input"
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-            />
-        </div>
+        <input
+            id={id}
+            value={value}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+            placeholder={placeholder}
+            disabled={disabled}
+            style={{
+                width: '100%',
+                padding: `${spacing.sm} ${spacing.md}`,
+                fontFamily: typography.fontFamily.base,
+                fontSize: typography.fontSize.md,
+                fontWeight: typography.fontWeight.normal,
+                lineHeight: typography.lineHeight.normal,
+                color: colors.text.primary,
+                backgroundColor: colors.neutral.white,
+                border: `1px solid ${colors.neutral.border}`,
+                borderRadius: borders.radius.md,
+                outline: 'none',
+                transition: 'border-color 0.2s ease-in-out',
+            }}
+        />
     );
 };
