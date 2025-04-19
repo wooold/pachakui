@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* 🌐 global.css - Versión limpia y optimizada para Pachakui */
 
 *,
