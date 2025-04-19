@@ -1,45 +1,73 @@
-import { ChangeEvent } from 'react';
-import { colors, spacing, typography, borders } from '@/tokens';
+import React from 'react';
+import { colors, spacing, borders, typography, shadows } from '@/tokens';
+
+type TextareaSize = 'sm' | 'md' | 'lg';
 
 type TextareaProps = {
-    id?: string;
-    value: string;
-    onChange: (value: string) => void;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     placeholder?: string;
     disabled?: boolean;
+    size?: TextareaSize;
+    name?: string;
     rows?: number;
 };
 
-export const Textarea = ({
-    id,
+const sizeMap: Record<TextareaSize, {
+    paddingY: string;
+    paddingX: string;
+    fontSize: string;
+}> = {
+    sm: {
+        paddingY: spacing.sm,
+        paddingX: spacing.md,
+        fontSize: typography.fontSize.sm,
+    },
+    md: {
+        paddingY: spacing.md,
+        paddingX: spacing.mdPlus,
+        fontSize: typography.fontSize.base,
+    },
+    lg: {
+        paddingY: spacing.mdPlus,
+        paddingX: spacing.lg,
+        fontSize: typography.fontSize.lg,
+    },
+};
+
+export const Textarea: React.FC<TextareaProps> = ({
     value,
     onChange,
-    placeholder = '',
+    placeholder,
     disabled = false,
+    size = 'md',
+    name,
     rows = 4,
-}: TextareaProps) => {
+}) => {
+    const { paddingY, paddingX, fontSize } = sizeMap[size];
+
     return (
         <textarea
-            id={id}
+            name={name}
             value={value}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onChange(e.target.value)}
+            onChange={onChange}
             placeholder={placeholder}
             disabled={disabled}
             rows={rows}
             style={{
                 width: '100%',
-                padding: `${spacing.sm} ${spacing.md}`,
-                fontFamily: typography.fontFamily.base,
-                fontSize: typography.fontSize.md,
-                fontWeight: typography.fontWeight.normal,
-                lineHeight: typography.lineHeight.normal,
-                color: colors.text.primary,
-                backgroundColor: colors.neutral.white,
+                resize: 'vertical',
+                padding: `${paddingY} ${paddingX}`,
+                fontSize,
+                lineHeight: typography.lineHeight.base,
                 border: `1px solid ${colors.neutral.border}`,
                 borderRadius: borders.radius.md,
-                resize: 'vertical',
+                backgroundColor: colors.background.base,
+                color: colors.text.primary,
                 outline: 'none',
-                transition: 'border-color 0.2s ease-in-out',
+                transition: 'all 0.2s ease-in-out',
+                opacity: disabled ? 0.5 : 1,
+                cursor: disabled ? 'not-allowed' : 'text',
             }}
         />
     );
