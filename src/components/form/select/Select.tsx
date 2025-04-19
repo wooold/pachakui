@@ -1,52 +1,112 @@
-import { ChangeEvent } from 'react';
-import { colors, spacing, typography, borders } from '@/tokens';
+import React from 'react';
+import { colors, spacing, borders, typography, shadows, iconSize } from '@/tokens';
+import { FiChevronDown } from 'react-icons/fi';
 
-type Option = {
-    label: string;
-    value: string;
-};
+type SelectSize = 'sm' | 'md' | 'lg';
 
 type SelectProps = {
-    id?: string;
-    value: string;
-    onChange: (value: string) => void;
-    options: Option[];
+    options: { value: string; label: string }[];
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    placeholder?: string;
     disabled?: boolean;
+    size?: SelectSize;
+    name?: string;
 };
 
-export const Select = ({
-    id,
+const sizeMap: Record<SelectSize, {
+    paddingY: string;
+    paddingX: string;
+    fontSize: string;
+    icon: string;
+}> = {
+    sm: {
+        paddingY: spacing.sm,
+        paddingX: spacing.md,
+        fontSize: typography.fontSize.sm,
+        icon: iconSize.sm,
+    },
+    md: {
+        paddingY: spacing.md,
+        paddingX: spacing.mdPlus,
+        fontSize: typography.fontSize.base,
+        icon: iconSize.md,
+    },
+    lg: {
+        paddingY: spacing.mdPlus,
+        paddingX: spacing.lg,
+        fontSize: typography.fontSize.lg,
+        icon: iconSize.lg,
+    },
+};
+
+export const Select: React.FC<SelectProps> = ({
+    options,
     value,
     onChange,
-    options,
+    placeholder,
     disabled = false,
-}: SelectProps) => {
+    size = 'md',
+    name,
+}) => {
+    const { paddingY, paddingX, fontSize, icon } = sizeMap[size];
+
     return (
-        <select
-            id={id}
-            value={value}
-            onChange={(e: ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
-            disabled={disabled}
+        <div
             style={{
-                width: '100%',
-                padding: `${spacing.sm} ${spacing.md}`,
-                fontFamily: typography.fontFamily.base,
-                fontSize: typography.fontSize.md,
-                fontWeight: typography.fontWeight.normal,
-                lineHeight: typography.lineHeight.normal,
-                color: colors.text.primary,
-                backgroundColor: colors.neutral.white,
+                position: 'relative',
+                display: 'inline-flex',
+                alignItems: 'center',
+                backgroundColor: colors.background.base,
                 border: `1px solid ${colors.neutral.border}`,
                 borderRadius: borders.radius.md,
-                outline: 'none',
-                transition: 'border-color 0.2s ease-in-out',
+                padding: `${paddingY} ${paddingX}`,
+                fontSize,
+                lineHeight: typography.lineHeight.base,
+                color: colors.text.primary,
+                cursor: disabled ? 'not-allowed' : 'pointer',
+                opacity: disabled ? 0.5 : 1,
+                transition: 'all 0.2s ease-in-out',
             }}
         >
-            {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                    {option.label}
-                </option>
-            ))}
-        </select>
+            <select
+                name={name}
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
+                style={{
+                    all: 'unset',
+                    appearance: 'none',
+                    width: '100%',
+                    fontSize,
+                    color: colors.text.primary,
+                    paddingRight: icon, // para evitar que el ícono se monte sobre el texto
+                }}
+            >
+                {placeholder && (
+                    <option value="" disabled hidden>{placeholder}</option>
+                )}
+                {options.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                    </option>
+                ))}
+            </select>
+
+            <div
+                style={{
+                    position: 'absolute',
+                    right: paddingX,
+                    pointerEvents: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: icon,
+                    height: icon,
+                }}
+            >
+                <FiChevronDown />
+            </div>
+        </div>
     );
 };

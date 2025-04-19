@@ -1,53 +1,63 @@
-import { ReactNode } from 'react';
-import { typography, colors, spacing } from '@/tokens';
+import React from 'react';
+import { typography, spacing, colors } from '@/tokens';
 
 type FormFieldProps = {
     label?: string;
     hint?: string;
     error?: string;
-    children: ReactNode;
-    id?: string;
+    required?: boolean;
+    children: React.ReactNode;
 };
 
-export const FormField = ({ label, hint, error, children, id }: FormFieldProps) => {
+export const FormField: React.FC<FormFieldProps> = ({
+    label,
+    hint,
+    error,
+    required = false,
+    children,
+}) => {
+    const fieldId = React.useId();
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.xs }}>
             {label && (
                 <label
-                    htmlFor={id}
+                    htmlFor={fieldId}
                     style={{
-                        fontSize: typography.fontSize.sm,
+                        fontSize: typography.fontSize.sm, // 14px
                         fontWeight: typography.fontWeight.medium,
                         color: colors.text.primary,
                     }}
                 >
-                    {label}
+                    {label} {required && <span style={{ color: colors.feedback.error }}>*</span>}
                 </label>
             )}
 
-            {children}
+            {/* Componente de entrada */}
+            <div>{children}</div>
 
-            {hint && !error && (
-                <span
-                    style={{
-                        fontSize: typography.fontSize.sm,
-                        color: colors.text.muted,
-                    }}
-                >
-                    {hint}
-                </span>
-            )}
-
-            {error && (
-                <span
+            {/* Hint o Error */}
+            {error ? (
+                <p
                     style={{
                         fontSize: typography.fontSize.sm,
                         color: colors.feedback.error,
+                        marginTop: spacing.xs,
                     }}
                 >
                     {error}
-                </span>
-            )}
+                </p>
+            ) : hint ? (
+                <p
+                    style={{
+                        fontSize: typography.fontSize.sm,
+                        color: colors.text.muted,
+                        marginTop: spacing.xs,
+                    }}
+                >
+                    {hint}
+                </p>
+            ) : null}
         </div>
     );
 };
