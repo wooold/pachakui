@@ -12,4 +12,7 @@ export const shadows = {
   lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
   xl: '0 20px 25px rgba(0, 0, 0, 0.15)',
   '2xl': '0 25px 50px rgba(0, 0, 0, 0.25)',
+
+  // 🔵 Focus Ring accesible
+  focus: '0 0 0 3px rgba(72, 135, 251, 0.4)',
 };
