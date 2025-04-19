@@ -1,43 +1,53 @@
-import { colors, spacing, typography } from '@/tokens';
+import React from 'react';
+import { colors, spacing, borders, typography } from '@/tokens';
 
 type CheckboxProps = {
-    label: string;
-    checked: boolean;
-    onChange?: (checked: boolean) => void;
+    label?: string;
+    checked?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
+    name?: string;
 };
 
-export const Checkbox = ({
+export const Checkbox: React.FC<CheckboxProps> = ({
     label,
-    checked,
+    checked = false,
     onChange,
     disabled = false,
-}: CheckboxProps) => {
+    name,
+}) => {
+    const checkboxId = React.useId();
+
     return (
         <label
+            htmlFor={checkboxId}
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: spacing.xs,
-                fontFamily: typography.fontFamily.base,
-                fontSize: typography.fontSize.md,
-                color: colors.text.primary,
+                gap: spacing.sm,
+                fontSize: typography.fontSize.base,
+                color: disabled ? colors.text.muted : colors.text.primary,
                 cursor: disabled ? 'not-allowed' : 'pointer',
+                userSelect: 'none',
             }}
         >
             <input
+                id={checkboxId}
                 type="checkbox"
+                name={name}
                 checked={checked}
-                onChange={(e) => onChange?.(e.target.checked)}
+                onChange={onChange}
                 disabled={disabled}
                 style={{
                     width: '16px',
                     height: '16px',
+                    border: `1px solid ${colors.neutral.border}`,
+                    borderRadius: borders.radius.sm,
                     accentColor: colors.brand.primary,
                     cursor: disabled ? 'not-allowed' : 'pointer',
                 }}
             />
-            <span>{label}</span>
+            {label}
         </label>
     );
 };
