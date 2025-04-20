@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< Updated upstream
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
@@ -40,9 +41,20 @@ const buttonVariants = cva(
     },
   }
 );
+=======
+import { colors, spacing, borders, typography } from '@tokens';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  disabled?: boolean;
+  onClick?: () => void;
+};
+>>>>>>> Stashed changes
 
 // 🧱 Componente principal
 export const Button: React.FC<ButtonProps> = ({
+<<<<<<< Updated upstream
   label,
   iconLeft,
   iconRight,
@@ -59,6 +71,68 @@ export const Button: React.FC<ButtonProps> = ({
       {iconLeft && <span className="mr-[8px]">{iconLeft}</span>}
       <span>{label}</span>
       {iconRight && <span className="ml-[8px]">{iconRight}</span>}
+=======
+  children,
+  variant = 'primary',
+  disabled = false,
+  onClick,
+}) => {
+  const paddingY = spacing.sm;
+  const paddingX = spacing.md;
+  const fontSize = typography.fontSize.md;
+
+  const baseStyle: React.CSSProperties = {
+    padding: `${paddingY} ${paddingX}`,
+    borderRadius: borders.radius.md,
+    fontWeight: typography.fontWeight.medium,
+    fontSize,
+    lineHeight: typography.lineHeight.base,
+    transition: 'all 0.2s ease-in-out',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    border: '1px solid',
+    outline: 'none',
+  };
+
+  const variantStyles = {
+    primary: {
+      backgroundColor: colors.brand.primary,
+      color: colors.neutral.white, // se corrigió desde text.onPrimary
+      borderColor: colors.brand.primary,
+    },
+    secondary: {
+      backgroundColor: colors.neutral.background, // corregido
+      color: colors.brand.primary,
+      borderColor: colors.brand.primary,
+    },
+    ghost: {
+      backgroundColor: 'transparent',
+      color: colors.brand.primary,
+      borderColor: 'transparent',
+    },
+  };
+
+  const hoverStyles = {
+    primary: {
+      backgroundColor: colors.brand.primary,
+    },
+    secondary: {
+      backgroundColor: colors.neutral.soft,
+    },
+    ghost: {
+      backgroundColor: colors.neutral.soft,
+    },
+  };
+
+  const style = {
+    ...baseStyle,
+    ...(variantStyles[variant]),
+    ...(disabled ? { opacity: 0.5 } : {}),
+  };
+
+  return (
+    <button style={style} onClick={onClick} disabled={disabled}>
+      {children}
+>>>>>>> Stashed changes
     </button>
   );
 };

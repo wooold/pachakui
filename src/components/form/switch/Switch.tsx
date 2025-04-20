@@ -1,61 +1,70 @@
-import { colors, spacing, borders } from '@/tokens';
+import React from 'react';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
+
+type SwitchSize = 'sm' | 'md' | 'lg';
 
 type SwitchProps = {
-    checked?: boolean;
-    onChange?: (checked: boolean) => void;
-    label?: string;
+    checked: boolean;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled?: boolean;
+    name?: string;
+    size?: SwitchSize;
 };
 
-export const Switch = ({ checked = false, onChange, label }: SwitchProps) => {
+export const Switch: React.FC<SwitchProps> = ({
+    checked,
+    onChange,
+    disabled = false,
+    name,
+    size = 'md',
+}) => {
+    const { width, height } = sizeMap[size].switch;
+    const knob = sizeMap[size].icon;
+
+    const id = React.useId();
+
     return (
         <label
+            htmlFor={id}
             style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: spacing.sm,
-                cursor: 'pointer',
-                fontSize: '14px',
-                userSelect: 'none',
+                position: 'relative',
+                display: 'inline-block',
+                width,
+                height,
+                backgroundColor: disabled
+                    ? colors.control.disabled
+                    : checked
+                        ? colors.control.on
+                        : colors.control.off,
+                borderRadius: '9999px',
+                cursor: disabled ? 'not-allowed' : 'pointer',
+                opacity: disabled ? 0.7 : 1,
+                transition: 'background-color 0.2s ease-in-out',
             }}
         >
-            <div
+            <input
+                id={id}
+                name={name}
+                type="checkbox"
+                checked={checked}
+                onChange={onChange}
+                disabled={disabled}
+                style={{ display: 'none' }}
+            />
+            <span
                 style={{
-                    position: 'relative',
-                    width: '36px',
-                    height: '20px',
-                    backgroundColor: checked ? colors.brand.primary : colors.neutral.border,
-                    borderRadius: borders.radius.full,
-                    transition: 'background-color 0.2s ease-in-out',
+                    position: 'absolute',
+                    top: '50%',
+                    left: checked ? `calc(100% - ${knob})` : '0',
+                    transform: 'translateY(-50%)',
+                    width: knob,
+                    height: knob,
+                    backgroundColor: colors.control.knob,
+                    borderRadius: '9999px',
+                    transition: 'left 0.2s ease-in-out',
                 }}
-            >
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={(e) => onChange?.(e.target.checked)}
-                    style={{
-                        opacity: 0,
-                        width: '100%',
-                        height: '100%',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        cursor: 'pointer',
-                    }}
-                />
-                <span
-                    style={{
-                        position: 'absolute',
-                        top: '2px',
-                        left: checked ? '18px' : '2px',
-                        width: '16px',
-                        height: '16px',
-                        borderRadius: borders.radius.full,
-                        backgroundColor: '#fff',
-                        transition: 'left 0.2s ease-in-out',
-                    }}
-                />
-            </div>
-            {label && <span>{label}</span>}
+            />
         </label>
     );
 };
