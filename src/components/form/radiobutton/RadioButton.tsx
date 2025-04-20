@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+import React from 'react';
+>>>>>>> origin/main
 import { colors, spacing, typography } from '@/tokens';
 =======
 import React from 'react';
@@ -9,22 +13,23 @@ type RadioButtonSize = 'sm' | 'md' | 'lg';
 >>>>>>> Stashed changes
 
 type RadioButtonProps = {
-    label: string;
-    name: string;
+    label?: string;
     value: string;
-    checked: boolean;
-    onChange?: (value: string) => void;
+    checked?: boolean;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
     disabled?: boolean;
     size?: RadioButtonSize;
 };
 
-export const RadioButton = ({
+export const RadioButton: React.FC<RadioButtonProps> = ({
     label,
-    name,
     value,
-    checked,
+    checked = false,
     onChange,
+    name,
     disabled = false,
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 }: RadioButtonProps) => {
 =======
@@ -39,11 +44,18 @@ export const RadioButton = ({
     const radioId = React.useId();
 
 >>>>>>> Stashed changes
+=======
+}) => {
+    const radioId = React.useId();
+
+>>>>>>> origin/main
     return (
         <label
+            htmlFor={radioId}
             style={{
                 display: 'flex',
                 alignItems: 'center',
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                 gap: spacing.xs,
                 fontFamily: typography.fontFamily.base,
@@ -54,31 +66,41 @@ export const RadioButton = ({
                 fontSize,
                 color: disabled ? colors.text.muted : colors.text.primary,
 >>>>>>> Stashed changes
+=======
+                gap: spacing.sm,
+                fontSize: typography.fontSize.base,
+                color: disabled ? colors.text.muted : colors.text.primary,
+>>>>>>> origin/main
                 cursor: disabled ? 'not-allowed' : 'pointer',
                 userSelect: 'none',
             }}
         >
             <input
+                id={radioId}
                 type="radio"
-                name={name}
                 value={value}
                 checked={checked}
-                onChange={() => onChange?.(value)}
+                onChange={onChange}
+                name={name}
                 disabled={disabled}
                 style={{
 <<<<<<< Updated upstream
                     width: '16px',
                     height: '16px',
+<<<<<<< HEAD
 =======
                     width: radioSize,
                     height: radioSize,
                     borderRadius: '50%',
 >>>>>>> Stashed changes
+=======
+                    borderRadius: '50%',
+>>>>>>> origin/main
                     accentColor: colors.brand.primary,
                     cursor: disabled ? 'not-allowed' : 'pointer',
                 }}
             />
-            <span>{label}</span>
+            {label}
         </label>
     );
 };

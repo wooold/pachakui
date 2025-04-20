@@ -2,11 +2,17 @@ import { primitives } from '@tokens/colors-primitives';
 
 export const colors = {
   brand: {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     primary: '#4887fb', // azul Pachakui
 =======
     primary: primitives.blue500,
 >>>>>>> Stashed changes
+=======
+    primary: '#4887fb',       // Azul Pachakui
+    hover: '#2c6ef2',         // Azul ligeramente más oscuro (hover)
+    active: '#1f54c0',        // Azul más profundo (click)
+>>>>>>> origin/main
   },
 
   neutral: {
@@ -18,10 +24,23 @@ export const colors = {
   },
 
   text: {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     primary: '#222f3e',   // charcoal
     secondary: '#4b5563', // graphite
     muted: '#9ca3af',     // gris más suave
+=======
+    primary: '#222f3e',     // charcoal
+    secondary: '#4b5563',   // graphite
+    muted: '#9ca3af',       // gris más suave
+    onPrimary: '#ffffff',   // texto sobre botón primario
+    onSecondary: '#4887fb', // texto sobre fondo blanco con borde azul
+  },
+
+  // 🎨 Fondos globales
+  background: {
+    base: '#ffffff', // fondo base
+>>>>>>> origin/main
   },
 
   // 🛡️ Feedback visual del sistema
