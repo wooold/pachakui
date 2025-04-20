@@ -1,6 +1,6 @@
 import React from 'react';
 import { sizeMap } from '@utils/sizemap';
-import { colors } from '@tokens/colors';
+import { buttonVariants } from 'variantMap';
 
 export interface ButtonProps {
   children: React.ReactNode;
@@ -8,6 +8,8 @@ export interface ButtonProps {
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   disabled?: boolean;
+  variant?: 'primary' | 'secondary' | 'outline';
+  onClick?: () => void; // ✅ añadida para evitar errores en Storybook
 }
 
 export const Button = ({
@@ -16,6 +18,8 @@ export const Button = ({
   iconLeft,
   iconRight,
   disabled = false,
+  variant = 'primary',
+  onClick,
 }: ButtonProps) => {
   const {
     paddingX,
@@ -26,10 +30,14 @@ export const Button = ({
     borderRadius,
   } = sizeMap[size];
 
+  const variantStyles = buttonVariants[variant];
+
   return (
     <button
+      onClick={onClick}
       disabled={disabled}
       style={{
+        ...variantStyles,
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -39,11 +47,8 @@ export const Button = ({
         fontWeight: 500,
         lineHeight: 1.2,
         borderRadius,
-        border: 'none',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.6 : 1,
-        backgroundColor: colors.control.default,
-        color: colors.text.inverse,
         transition: 'background-color 0.2s ease',
       }}
     >

@@ -28,8 +28,9 @@ export const AllVariants: Story = {
                         <Button size={size} variant="secondary">
                             Secondary
                         </Button>
-                        <Button size={size} variant="ghost">
-                            Ghost
+                        {/* Se eliminó "ghost", se reemplaza por "outline" */}
+                        <Button size={size} variant="outline">
+                            Outline
                         </Button>
                         <Button size={size} variant="primary" iconLeft={<FcGoogle />}>
                             Left Icon
@@ -39,7 +40,7 @@ export const AllVariants: Story = {
                         </Button>
                         <Button
                             size={size}
-                            variant="ghost"
+                            variant="outline"
                             iconLeft={<FcGoogle />}
                             iconRight={<FaArrowRight />}
                         >
