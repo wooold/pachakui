@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'url';
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
@@ -21,7 +21,7 @@ const config = {
       '@': fileURLToPath(new URL('../src', import.meta.url)),
       '@tokens': fileURLToPath(new URL('../src/tokens', import.meta.url)),
       '@utils': fileURLToPath(new URL('../src/utils', import.meta.url)),
-      '@styles': fileURLToPath(new URL('../src/styles', import.meta.url)), // 👈 añade este si usas @styles
+      '@styles': fileURLToPath(new URL('../src/styles', import.meta.url)),
     };
     return config;
   },

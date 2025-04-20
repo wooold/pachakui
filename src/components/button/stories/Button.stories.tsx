@@ -60,7 +60,7 @@ export const MediumRightIcon: Story = {
 
 export const Large: Story = {
     args: {
-        children: 'Acción grande',
+        children: 'Grande',
         size: 'lg',
         variant: 'primary',
     },
@@ -68,10 +68,20 @@ export const Large: Story = {
 
 export const LargeWithIcon: Story = {
     args: {
-        children: 'Google XL',
+        children: 'Registrarse con Google',
         size: 'lg',
         variant: 'secondary',
         iconLeft: <FcGoogle />,
+    },
+};
+
+export const WithLeftAndRightIcon: Story = {
+    args: {
+        children: 'Entrar',
+        size: 'md',
+        variant: 'secondary',
+        iconLeft: <FcGoogle />,
+        iconRight: <FaArrowRight />,
     },
 };
 
@@ -79,7 +89,6 @@ export const Disabled: Story = {
     args: {
         children: 'Deshabilitado',
         size: 'md',
-        variant: 'primary',
         disabled: true,
     },
 };
