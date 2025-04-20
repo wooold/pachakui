@@ -17,6 +17,7 @@ export const colors = {
     primary: primitives.black,
     muted: primitives.gray400,
     onPrimary: primitives.white,
+    inverse: primitives.white, // 👈 agregar esto
   },
 
   feedback: {
@@ -29,6 +30,7 @@ export const colors = {
     off: primitives.gray300,
     knob: primitives.white,
     disabled: primitives.gray100,
+    default: primitives.blue500, // 👈 agregar esto
   },
 
   transparent: primitives.transparent,

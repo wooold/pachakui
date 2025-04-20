@@ -14,6 +14,8 @@ export const InputPassword: React.FC<InputPasswordProps> = (props) => {
             iconRight={
                 <span
                     onClick={() => setVisible((v) => !v)}
+                    role="button"
+                    aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                     style={{ cursor: 'pointer' }}
                 >
                     {visible ? <FiEyeOff /> : <FiEye />}

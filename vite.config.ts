@@ -1,15 +1,13 @@
+// vite.config.ts
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
+// Configuración base con soporte de aliases automáticos desde tsconfig
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@tokens': path.resolve(__dirname, 'src/tokens'),
-      '@utils': path.resolve(__dirname, 'src/utils'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
-    },
-  },
+  plugins: [
+    react(),
+    tsconfigPaths(), // ✅ Activa los aliases definidos en tsconfig.json automáticamente
+  ],
 });

@@ -10,6 +10,8 @@ export const InputSearch: React.FC<InputSearchProps> = (props) => {
             {...props}
             type="search"
             iconLeft={<FiSearch />}
+            role="searchbox"
+            aria-label="Buscar"
         />
     );
 };

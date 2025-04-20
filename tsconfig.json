@@ -20,8 +20,14 @@
       ],
       "@utils/*": [
         "src/utils/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@icons/*": [
+        "src/icons/*"
       ]
-    }
+    },
   },
   "include": [
     "src",

@@ -1,86 +1,63 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
-import { GoogleIcon, ArrowRightIcon } from '@icons';
+import React from 'react';
+import { sizeMap } from '@utils/sizemap';
+import { colors } from '@tokens/colors';
 
-const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
-  component: Button,
-  tags: ['autodocs'],
-  parameters: {
-    layout: 'centered',
-  },
-};
+export interface ButtonProps {
+  children: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
+  disabled?: boolean;
+}
 
-export default meta;
-type Story = StoryObj<typeof Button>;
+export const Button = ({
+  children,
+  size = 'md',
+  iconLeft,
+  iconRight,
+  disabled = false,
+}: ButtonProps) => {
+  const {
+    paddingX,
+    paddingY,
+    fontSize,
+    gap,
+    icon: iconSize,
+    borderRadius,
+  } = sizeMap[size];
 
-export const Small: Story = {
-  args: {
-    size: 'sm',
-    children: 'Small',
-  },
-};
-
-export const SmallWithIcon: Story = {
-  args: {
-    size: 'sm',
-    children: 'Continuar con Google',
-    iconLeft: <GoogleIcon />,
-  },
-};
-
-export const Medium: Story = {
-  args: {
-    size: 'md',
-    children: 'Medium',
-  },
-};
-
-export const MediumWithIcon: Story = {
-  args: {
-    size: 'md',
-    children: 'Continuar con Google',
-    iconLeft: <GoogleIcon />,
-  },
-};
-
-export const MediumRightIcon: Story = {
-  args: {
-    size: 'md',
-    children: 'Continuar con Google',
-    iconRight: <ArrowRightIcon />,
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'lg',
-    children: 'Large',
-  },
-};
-
-export const LargeWithIcon: Story = {
-  args: {
-    size: 'lg',
-    children: 'Continuar con Google',
-    iconLeft: <GoogleIcon />,
-  },
-};
-
-export const WithLeftAndRightIcon: Story = {
-  args: {
-    size: 'lg',
-    children: 'Both Icons',
-    iconLeft: <GoogleIcon />,
-    iconRight: <ArrowRightIcon />,
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    size: 'md',
-    variant: 'secondary',
-    disabled: true,
-    children: 'Disabled',
-  },
+  return (
+    <button
+      disabled={disabled}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap,
+        padding: `${paddingY} ${paddingX}`,
+        fontSize,
+        fontWeight: 500,
+        lineHeight: 1.2,
+        borderRadius,
+        border: 'none',
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.6 : 1,
+        backgroundColor: colors.control.default,
+        color: colors.text.inverse,
+        transition: 'background-color 0.2s ease',
+      }}
+    >
+      {iconLeft && (
+        <span style={{ display: 'flex', width: iconSize, height: iconSize }}>
+          {iconLeft}
+        </span>
+      )}
+      {children}
+      {iconRight && (
+        <span style={{ display: 'flex', width: iconSize, height: iconSize }}>
+          {iconRight}
+        </span>
+      )}
+    </button>
+  );
 };
