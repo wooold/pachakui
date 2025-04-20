@@ -1,41 +1,46 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 import { RadioButton } from '../RadioButton';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof RadioButton> = {
     title: 'Components/Form/RadioButton',
     component: RadioButton,
     tags: ['autodocs'],
-    argTypes: {
-        onChange: { action: 'changed' },
+    args: {
+        label: 'Opción seleccionable',
+        value: 'option-1',
+        checked: false,
+        disabled: false,
+        size: 'md',
+        name: 'grupo-demo',
     },
 };
 
 export default meta;
 type Story = StoryObj<typeof RadioButton>;
 
-export const Default: Story = {
-    args: {
-        label: 'Opción A',
-        value: 'A',
-        name: 'example',
-    },
-};
+export const Default: Story = {};
 
 export const Checked: Story = {
     args: {
-        label: 'Opción seleccionada',
-        value: 'B',
         checked: true,
-        name: 'example',
     },
 };
 
 export const Disabled: Story = {
     args: {
-        label: 'No editable',
-        value: 'C',
-        checked: true,
         disabled: true,
-        name: 'example',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'sm',
+    },
+};
+
+export const Large: Story = {
+    args: {
+        size: 'lg',
     },
 };

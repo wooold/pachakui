@@ -1,5 +1,6 @@
 import React from 'react';
-import { colors, spacing, borders, typography, shadows } from '@/tokens';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
 
 type TextareaSize = 'sm' | 'md' | 'lg';
 
@@ -13,28 +14,6 @@ type TextareaProps = {
     rows?: number;
 };
 
-const sizeMap: Record<TextareaSize, {
-    paddingY: string;
-    paddingX: string;
-    fontSize: string;
-}> = {
-    sm: {
-        paddingY: spacing.sm,
-        paddingX: spacing.md,
-        fontSize: typography.fontSize.sm,
-    },
-    md: {
-        paddingY: spacing.md,
-        paddingX: spacing.mdPlus,
-        fontSize: typography.fontSize.base,
-    },
-    lg: {
-        paddingY: spacing.mdPlus,
-        paddingX: spacing.lg,
-        fontSize: typography.fontSize.lg,
-    },
-};
-
 export const Textarea: React.FC<TextareaProps> = ({
     value,
     onChange,
@@ -44,7 +23,11 @@ export const Textarea: React.FC<TextareaProps> = ({
     name,
     rows = 4,
 }) => {
-    const { paddingY, paddingX, fontSize } = sizeMap[size];
+    const {
+        paddingX,
+        paddingY,
+        fontSize,
+    } = sizeMap[size];
 
     return (
         <textarea
@@ -59,10 +42,10 @@ export const Textarea: React.FC<TextareaProps> = ({
                 resize: 'vertical',
                 padding: `${paddingY} ${paddingX}`,
                 fontSize,
-                lineHeight: typography.lineHeight.base,
+                lineHeight: '1.5',
                 border: `1px solid ${colors.neutral.border}`,
-                borderRadius: borders.radius.md,
-                backgroundColor: colors.background.base,
+                borderRadius: '6px',
+                backgroundColor: colors.neutral.background,
                 color: colors.text.primary,
                 outline: 'none',
                 transition: 'all 0.2s ease-in-out',

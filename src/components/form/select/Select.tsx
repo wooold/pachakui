@@ -1,6 +1,6 @@
 import React from 'react';
-import { colors, spacing, borders, typography, shadows, iconSize } from '@/tokens';
-import { FiChevronDown } from 'react-icons/fi';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
 
 type SelectSize = 'sm' | 'md' | 'lg';
 
@@ -14,32 +14,6 @@ type SelectProps = {
     name?: string;
 };
 
-const sizeMap: Record<SelectSize, {
-    paddingY: string;
-    paddingX: string;
-    fontSize: string;
-    icon: string;
-}> = {
-    sm: {
-        paddingY: spacing.sm,
-        paddingX: spacing.md,
-        fontSize: typography.fontSize.sm,
-        icon: iconSize.sm,
-    },
-    md: {
-        paddingY: spacing.md,
-        paddingX: spacing.mdPlus,
-        fontSize: typography.fontSize.base,
-        icon: iconSize.md,
-    },
-    lg: {
-        paddingY: spacing.mdPlus,
-        paddingX: spacing.lg,
-        fontSize: typography.fontSize.lg,
-        icon: iconSize.lg,
-    },
-};
-
 export const Select: React.FC<SelectProps> = ({
     options,
     value,
@@ -49,7 +23,13 @@ export const Select: React.FC<SelectProps> = ({
     size = 'md',
     name,
 }) => {
-    const { paddingY, paddingX, fontSize, icon } = sizeMap[size];
+    const {
+        paddingX,
+        paddingY,
+        fontSize,
+        gap,
+        icon: iconSize,
+    } = sizeMap[size];
 
     return (
         <div
@@ -57,12 +37,12 @@ export const Select: React.FC<SelectProps> = ({
                 position: 'relative',
                 display: 'inline-flex',
                 alignItems: 'center',
-                backgroundColor: colors.background.base,
+                backgroundColor: colors.neutral.background,
                 border: `1px solid ${colors.neutral.border}`,
-                borderRadius: borders.radius.md,
+                borderRadius: '6px',
                 padding: `${paddingY} ${paddingX}`,
                 fontSize,
-                lineHeight: typography.lineHeight.base,
+                lineHeight: '1.5',
                 color: colors.text.primary,
                 cursor: disabled ? 'not-allowed' : 'pointer',
                 opacity: disabled ? 0.5 : 1,
@@ -80,7 +60,7 @@ export const Select: React.FC<SelectProps> = ({
                     width: '100%',
                     fontSize,
                     color: colors.text.primary,
-                    paddingRight: icon, // para evitar que el ícono se monte sobre el texto
+                    paddingRight: iconSize,
                 }}
             >
                 {placeholder && (
@@ -101,11 +81,11 @@ export const Select: React.FC<SelectProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: icon,
-                    height: icon,
+                    width: iconSize,
+                    height: iconSize,
                 }}
             >
-                <FiChevronDown />
+                ▼
             </div>
         </div>
     );

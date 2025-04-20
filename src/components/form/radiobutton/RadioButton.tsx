@@ -1,5 +1,8 @@
 import React from 'react';
-import { colors, spacing, typography } from '@/tokens';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
+
+type RadioButtonSize = 'sm' | 'md' | 'lg';
 
 type RadioButtonProps = {
     label?: string;
@@ -8,6 +11,7 @@ type RadioButtonProps = {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     name?: string;
     disabled?: boolean;
+    size?: RadioButtonSize;
 };
 
 export const RadioButton: React.FC<RadioButtonProps> = ({
@@ -17,7 +21,14 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
     onChange,
     name,
     disabled = false,
+    size = 'md',
 }) => {
+    const {
+        fontSize,
+        icon: radioSize,
+        gap,
+    } = sizeMap[size];
+
     const radioId = React.useId();
 
     return (
@@ -26,10 +37,11 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: spacing.sm,
-                fontSize: typography.fontSize.base,
+                gap,
+                fontSize,
                 color: disabled ? colors.text.muted : colors.text.primary,
                 cursor: disabled ? 'not-allowed' : 'pointer',
+                userSelect: 'none',
             }}
         >
             <input
@@ -41,8 +53,8 @@ export const RadioButton: React.FC<RadioButtonProps> = ({
                 name={name}
                 disabled={disabled}
                 style={{
-                    width: '16px',
-                    height: '16px',
+                    width: radioSize,
+                    height: radioSize,
                     borderRadius: '50%',
                     accentColor: colors.brand.primary,
                     cursor: disabled ? 'not-allowed' : 'pointer',

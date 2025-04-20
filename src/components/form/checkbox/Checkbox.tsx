@@ -1,5 +1,8 @@
 import React from 'react';
-import { colors, spacing, borders, typography } from '@/tokens';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
+
+type CheckboxSize = 'sm' | 'md' | 'lg';
 
 type CheckboxProps = {
     label?: string;
@@ -7,6 +10,7 @@ type CheckboxProps = {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     disabled?: boolean;
     name?: string;
+    size?: CheckboxSize;
 };
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -15,7 +19,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     onChange,
     disabled = false,
     name,
+    size = 'md',
 }) => {
+    const {
+        fontSize,
+        icon: checkboxSize,
+        gap,
+    } = sizeMap[size];
+
     const checkboxId = React.useId();
 
     return (
@@ -24,8 +35,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: spacing.sm,
-                fontSize: typography.fontSize.base,
+                gap,
+                fontSize,
                 color: disabled ? colors.text.muted : colors.text.primary,
                 cursor: disabled ? 'not-allowed' : 'pointer',
                 userSelect: 'none',
@@ -39,10 +50,10 @@ export const Checkbox: React.FC<CheckboxProps> = ({
                 onChange={onChange}
                 disabled={disabled}
                 style={{
-                    width: '16px',
-                    height: '16px',
+                    width: checkboxSize,
+                    height: checkboxSize,
                     border: `1px solid ${colors.neutral.border}`,
-                    borderRadius: borders.radius.sm,
+                    borderRadius: '4px',
                     accentColor: colors.brand.primary,
                     cursor: disabled ? 'not-allowed' : 'pointer',
                 }}

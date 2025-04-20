@@ -1,5 +1,6 @@
 import React from 'react';
-import { colors, spacing, borders, typography, shadows, iconSize } from '@/tokens';
+import { colors } from '@tokens';
+import { sizeMap } from '@utils/sizemap';
 
 type InputSize = 'sm' | 'md' | 'lg';
 
@@ -15,36 +16,6 @@ type InputProps = {
     name?: string;
 };
 
-const sizeMap: Record<InputSize, {
-    paddingY: string;
-    paddingX: string;
-    gap: string;
-    fontSize: string;
-    icon: string;
-}> = {
-    sm: {
-        paddingY: spacing.sm,
-        paddingX: spacing.md,
-        gap: spacing.sm,
-        fontSize: typography.fontSize.sm, // 14px
-        icon: iconSize.sm,                // 16px
-    },
-    md: {
-        paddingY: spacing.md,
-        paddingX: spacing.mdPlus,
-        gap: spacing.smPlus,
-        fontSize: typography.fontSize.base, // 16px
-        icon: iconSize.md,                  // 20px
-    },
-    lg: {
-        paddingY: spacing.mdPlus,
-        paddingX: spacing.lg,
-        gap: spacing.md,
-        fontSize: typography.fontSize.lg, // 18px
-        icon: iconSize.lg,                // 24px
-    },
-};
-
 export const Input: React.FC<InputProps> = ({
     value,
     onChange,
@@ -56,19 +27,25 @@ export const Input: React.FC<InputProps> = ({
     type = 'text',
     name,
 }) => {
-    const { paddingY, paddingX, gap, fontSize, icon } = sizeMap[size];
+    const {
+        paddingX,
+        paddingY,
+        gap,
+        fontSize,
+        icon: iconSize,
+    } = sizeMap[size];
 
     return (
         <div
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: colors.background.base,
+                backgroundColor: colors.neutral.background,
                 border: `1px solid ${colors.neutral.border}`,
-                borderRadius: borders.radius.md,
+                borderRadius: '6px',
                 padding: `${paddingY} ${paddingX}`,
                 fontSize,
-                lineHeight: typography.lineHeight.base,
+                lineHeight: '1.5',
                 color: colors.text.primary,
                 gap,
                 cursor: disabled ? 'not-allowed' : 'text',
@@ -79,8 +56,8 @@ export const Input: React.FC<InputProps> = ({
             {iconLeft && (
                 <span
                     style={{
-                        width: icon,
-                        height: icon,
+                        width: iconSize,
+                        height: iconSize,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -110,8 +87,8 @@ export const Input: React.FC<InputProps> = ({
             {iconRight && (
                 <span
                     style={{
-                        width: icon,
-                        height: icon,
+                        width: iconSize,
+                        height: iconSize,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',

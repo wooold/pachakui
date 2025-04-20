@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx", // ✅ Necesario para que TypeScript entienda JSX
-    "esModuleInterop": true, // ✅ Para permitir importar React por default (y evitar el error del import)
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "node",
