@@ -1,68 +1,33 @@
 import React from 'react';
+import { buttonVariants } from './variantMap'; // ✅ Ruta corregida
 import { sizeMap } from '@utils/sizemap';
-import { buttonVariants } from 'variantMap';
 
 export interface ButtonProps {
   children: React.ReactNode;
-  size?: 'sm' | 'md' | 'lg';
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  onClick?: () => void;
+  variant?: keyof typeof buttonVariants;
+  size?: keyof typeof sizeMap;
   disabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'outline';
-  onClick?: () => void; // ✅ añadida para evitar errores en Storybook
 }
 
 export const Button = ({
   children,
-  size = 'md',
-  iconLeft,
-  iconRight,
-  disabled = false,
-  variant = 'primary',
   onClick,
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
 }: ButtonProps) => {
-  const {
-    paddingX,
-    paddingY,
-    fontSize,
-    gap,
-    icon: iconSize,
-    borderRadius,
-  } = sizeMap[size];
-
-  const variantStyles = buttonVariants[variant];
+  const styles = {
+    ...buttonVariants[variant],
+    padding: `${sizeMap[size].paddingY} ${sizeMap[size].paddingX}`,
+    fontSize: sizeMap[size].fontSize,
+    borderRadius: sizeMap[size].borderRadius,
+    opacity: disabled ? 0.5 : 1,
+  };
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      style={{
-        ...variantStyles,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap,
-        padding: `${paddingY} ${paddingX}`,
-        fontSize,
-        fontWeight: 500,
-        lineHeight: 1.2,
-        borderRadius,
-        cursor: disabled ? 'not-allowed' : 'pointer',
-        opacity: disabled ? 0.6 : 1,
-        transition: 'background-color 0.2s ease',
-      }}
-    >
-      {iconLeft && (
-        <span style={{ display: 'flex', width: iconSize, height: iconSize }}>
-          {iconLeft}
-        </span>
-      )}
+    <button onClick={onClick} disabled={disabled} style={styles}>
       {children}
-      {iconRight && (
-        <span style={{ display: 'flex', width: iconSize, height: iconSize }}>
-          {iconRight}
-        </span>
-      )}
     </button>
   );
 };

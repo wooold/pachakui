@@ -1,17 +1,17 @@
 import React from 'react';
-import { Input } from './Input';
-import { FiSearch } from 'react-icons/fi';
+import { Input, InputProps } from './Input';
 
-type InputSearchProps = Omit<React.ComponentProps<typeof Input>, 'type' | 'iconLeft'>;
+export interface InputSearchProps extends InputProps {
+    iconLeft?: React.ReactNode;
+}
 
-export const InputSearch: React.FC<InputSearchProps> = (props) => {
+export const InputSearch = ({ iconLeft, ...props }: InputSearchProps) => {
     return (
-        <Input
-            {...props}
-            type="search"
-            iconLeft={<FiSearch />}
-            role="searchbox"
-            aria-label="Buscar"
-        />
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            {iconLeft && (
+                <span style={{ position: 'absolute', left: '12px' }}>{iconLeft}</span>
+            )}
+            <Input {...props} type="search" />
+        </div>
     );
 };

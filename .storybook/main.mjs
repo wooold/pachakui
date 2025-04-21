@@ -1,24 +1,24 @@
-/** @type { import('@storybook/react-vite').StorybookConfig } */
-const config = {
-  stories: ['../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-  ],
+export default {
+  stories: ['../src/**/*.stories.@(ts|tsx)'],
+  addons: ['@storybook/addon-essentials'],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  docs: {
-    autodocs: 'tag',
+  core: {
+    builder: '@storybook/builder-vite',
   },
   viteFinal: async (config) => {
-    const { default: tsconfigPaths } = await import('vite-tsconfig-paths'); // ✅ Fix para ESM (.mjs)
-    config.plugins = config.plugins || [];
-    config.plugins.push(tsconfigPaths());
+    config.resolve.alias = {
+      '@': new URL('../src', import.meta.url).pathname,
+      '@components': new URL('../src/components', import.meta.url).pathname,
+      '@form': new URL('../src/components/form', import.meta.url).pathname,
+      '@tokens': new URL('../src/tokens', import.meta.url).pathname,
+      '@icons': new URL('../src/icons', import.meta.url).pathname,
+      '@utils': new URL('../src/utils', import.meta.url).pathname, // 🛠️ alias faltante
+    };
+
+    // ❌ Ya no necesitamos viteTsconfigPaths, evitamos conflicto con ESM/CJS
     return config;
   },
 };
-
-export default config;

@@ -1,92 +1,33 @@
 import React from 'react';
-import { colors } from '@tokens';
-import { sizeMap } from '@utils/sizemap';
+import { colors } from '@tokens/colors';
 
-type SelectSize = 'sm' | 'md' | 'lg';
-
-type SelectProps = {
-    options: { value: string; label: string }[];
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    placeholder?: string;
+export interface SelectProps {
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    options: { label: string; value: string }[];
     disabled?: boolean;
-    size?: SelectSize;
-    name?: string;
-};
+    size?: 'sm' | 'md' | 'lg';
+}
 
-export const Select: React.FC<SelectProps> = ({
-    options,
-    value,
-    onChange,
-    placeholder,
-    disabled = false,
-    size = 'md',
-    name,
-}) => {
-    const {
-        paddingX,
-        paddingY,
-        fontSize,
-        gap,
-        icon: iconSize,
-    } = sizeMap[size];
-
+export const Select = ({ value, onChange, options, disabled = false }: SelectProps) => {
     return (
-        <div
+        <select
+            value={value}
+            onChange={onChange}
+            disabled={disabled}
             style={{
-                position: 'relative',
-                display: 'inline-flex',
-                alignItems: 'center',
-                backgroundColor: colors.neutral.background,
-                border: `1px solid ${colors.neutral.border}`,
-                borderRadius: '6px',
-                padding: `${paddingY} ${paddingX}`,
-                fontSize,
-                lineHeight: '1.5',
+                padding: '8px 12px',
+                border: `1px solid ${colors.control.default}`,
+                borderRadius: '4px',
                 color: colors.text.primary,
-                cursor: disabled ? 'not-allowed' : 'pointer',
                 opacity: disabled ? 0.5 : 1,
-                transition: 'all 0.2s ease-in-out',
             }}
         >
-            <select
-                name={name}
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                style={{
-                    all: 'unset',
-                    appearance: 'none',
-                    width: '100%',
-                    fontSize,
-                    color: colors.text.primary,
-                    paddingRight: iconSize,
-                }}
-            >
-                {placeholder && (
-                    <option value="" disabled hidden>{placeholder}</option>
-                )}
-                {options.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                    </option>
-                ))}
-            </select>
-
-            <div
-                style={{
-                    position: 'absolute',
-                    right: paddingX,
-                    pointerEvents: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: iconSize,
-                    height: iconSize,
-                }}
-            >
-                ▼
-            </div>
-        </div>
+            {options.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                </option>
+            ))}
+        </select>
     );
 };

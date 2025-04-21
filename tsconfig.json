@@ -1,34 +1,49 @@
 {
   "compilerOptions": {
+    // ✨ Soporte para JSX con la nueva transformación automática de React 17+
     "jsx": "react-jsx",
+    // ✅ Permite usar `import x from 'modulo'` incluso si el módulo usa exportaciones comunes
     "esModuleInterop": true,
+    // 🎯 Especifica los módulos ECMAScript más modernos
     "module": "ESNext",
     "target": "ESNext",
+    // 🔍 Cómo resolver módulos: sigue el sistema estándar de Node.js
     "moduleResolution": "node",
+    // ✅ Permite importar archivos .json
     "resolveJsonModule": true,
+    // ⚠️ Habilita el aislamiento por archivo (útil con Babel)
     "isolatedModules": true,
+    // 🔒 Forzar consistencia en el uso de mayúsculas en nombres de archivo
     "forceConsistentCasingInFileNames": true,
+    // ⚡ Ignora validación de tipos en archivos de definición de terceros
     "skipLibCheck": true,
+    // 🧠 Activa todas las validaciones estrictas de TypeScript
     "strict": true,
-    "baseUrl": "./",
+    // ✅ CAMBIO CLAVE: ahora los paths se resuelven desde /src (y no desde raíz del proyecto)
+    "baseUrl": "src",
+    // 🔗 Aliases personalizados
     "paths": {
       "@/*": [
-        "src/*"
+        "*"
+      ],
+      "@components/*": [
+        "components/*"
       ],
       "@tokens/*": [
-        "src/tokens/*"
+        "tokens/*"
       ],
       "@utils/*": [
-        "src/utils/*"
+        "utils/*"
       ],
       "@styles/*": [
-        "src/styles/*"
+        "styles/*"
       ],
       "@icons/*": [
-        "src/icons/*"
+        "icons/*"
       ]
-    },
+    }
   },
+  // 🗂 Qué carpetas debe incluir el compilador de TypeScript
   "include": [
     "src",
     "src/@types"

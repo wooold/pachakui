@@ -1,43 +1,50 @@
+import React from 'react';
+import { Switch, SwitchProps } from '../Switch';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Switch } from '../Switch';
 
-const meta: Meta<typeof Switch> = {
-    title: 'Components/Form/Switch',
+const meta: Meta<SwitchProps> = {
+    title: 'Form/Switch',
     component: Switch,
-    tags: ['autodocs'],
+    args: {
+        checked: false,
+        disabled: false,
+        size: 'md',
+        onChange: () => { },
+    },
     argTypes: {
-        onChange: { action: 'changed' },
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof Switch>;
 
-export const Small: Story = {
-    args: {
-        checked: false,
-        size: 'sm',
-    },
-};
+type Story = StoryObj<SwitchProps>;
 
-export const Medium: Story = {
+export const Default: Story = {};
+
+export const Enabled: Story = {
     args: {
         checked: true,
-        size: 'md',
-    },
-};
-
-export const Large: Story = {
-    args: {
-        checked: false,
-        size: 'lg',
     },
 };
 
 export const Disabled: Story = {
     args: {
-        checked: true,
-        size: 'md',
         disabled: true,
+    },
+};
+
+export const Large: Story = {
+    args: {
+        size: 'lg',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'sm',
     },
 };

@@ -7,7 +7,7 @@ export const buttonVariants = {
         border: 'none',
     },
     secondary: {
-        backgroundColor: colors.backgroundDefault, // 🔧 corregido aquí
+        backgroundColor: colors.neutral.white,
         color: colors.control.default,
         border: `1px solid ${colors.control.default}`,
     },

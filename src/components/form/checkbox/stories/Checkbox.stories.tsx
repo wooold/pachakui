@@ -1,21 +1,27 @@
 import React from 'react';
-import { Checkbox } from '../Checkbox';
+import { Checkbox, CheckboxProps } from '../Checkbox';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof Checkbox> = {
-    title: 'Components/Form/Checkbox',
+const meta: Meta<CheckboxProps> = {
+    title: 'Form/Checkbox',
     component: Checkbox,
-    tags: ['autodocs'],
     args: {
-        label: 'Acepto los términos y condiciones',
+        label: 'Aceptar términos',
         checked: false,
         disabled: false,
         size: 'md',
     },
+    argTypes: {
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
+    },
 };
 
 export default meta;
-type Story = StoryObj<typeof Checkbox>;
+
+type Story = StoryObj<CheckboxProps>;
 
 export const Default: Story = {};
 
@@ -31,14 +37,14 @@ export const Disabled: Story = {
     },
 };
 
-export const Small: Story = {
-    args: {
-        size: 'sm',
-    },
-};
-
 export const Large: Story = {
     args: {
         size: 'lg',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'sm',
     },
 };

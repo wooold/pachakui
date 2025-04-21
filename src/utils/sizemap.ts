@@ -1,4 +1,7 @@
-import { spacing, typography, iconSize, borders } from '@tokens';
+import { spacing } from '@tokens/spacing';
+import { typography } from '@tokens/typography';
+import { iconSize } from '@tokens/iconSize';
+import { borders } from '@tokens/borders';
 
 export const sizeMap = {
     sm: {
@@ -7,8 +10,11 @@ export const sizeMap = {
         gap: spacing.sm,
         fontSize: typography.fontSize.sm,
         icon: iconSize.sm,
-        borderRadius: borders.radius.md, // ✅ corregido aquí
-        switch: { width: '32px', height: '16px' },
+        borderRadius: borders.radius.md,
+        switch: {
+            width: '32px',
+            height: '16px',
+        },
     },
     md: {
         paddingX: spacing.mdPlus,
@@ -17,7 +23,10 @@ export const sizeMap = {
         fontSize: typography.fontSize.base,
         icon: iconSize.md,
         borderRadius: borders.radius.md,
-        switch: { width: '40px', height: '20px' },
+        switch: {
+            width: '40px',
+            height: '20px',
+        },
     },
     lg: {
         paddingX: spacing.lg,
@@ -26,6 +35,9 @@ export const sizeMap = {
         fontSize: typography.fontSize.lg,
         icon: iconSize.lg,
         borderRadius: borders.radius.md,
-        switch: { width: '48px', height: '24px' },
+        switch: {
+            width: '48px',
+            height: '24px',
+        },
     },
 };
