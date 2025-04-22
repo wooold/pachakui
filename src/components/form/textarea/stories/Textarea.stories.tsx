@@ -1,43 +1,51 @@
+import React from 'react';
+import { Textarea, TextareaProps } from '../Textarea';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea } from '../Textarea';
 
-const meta: Meta<typeof Textarea> = {
-    title: 'Components/Form/Textarea',
+const meta: Meta<TextareaProps> = {
+    title: 'Form/Textarea',
     component: Textarea,
-    tags: ['autodocs'],
+    args: {
+        value: '',
+        placeholder: 'Escribe un mensaje...',
+        disabled: false,
+        size: 'md',
+        onChange: () => { },
+    },
     argTypes: {
-        onChange: { action: 'changed' },
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof Textarea>;
 
-export const Small: Story = {
-    args: {
-        placeholder: 'Comentario pequeño...',
-        size: 'sm',
-    },
-};
+type Story = StoryObj<TextareaProps>;
 
-export const Medium: Story = {
-    args: {
-        placeholder: 'Comentario mediano...',
-        size: 'md',
-    },
-};
+export const Default: Story = {};
 
-export const Large: Story = {
+export const WithText: Story = {
     args: {
-        placeholder: 'Comentario grande...',
-        size: 'lg',
+        value: 'Este es un ejemplo de contenido prellenado.',
     },
 };
 
 export const Disabled: Story = {
     args: {
-        placeholder: 'Deshabilitado...',
-        size: 'md',
         disabled: true,
+    },
+};
+
+export const Large: Story = {
+    args: {
+        size: 'lg',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'sm',
     },
 };

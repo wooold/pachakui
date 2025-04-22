@@ -1,65 +1,20 @@
 import React from 'react';
-import { colors } from '@tokens';
-import { sizeMap } from '@utils/sizemap';
+import { colors } from '@tokens/colors';
 
-type RadioButtonSize = 'sm' | 'md' | 'lg';
-
-type RadioButtonProps = {
-    label?: string;
+export interface RadioButtonProps {
+    label: string;
+    name: string;
     value: string;
-    checked?: boolean;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    name?: string;
+    checked: boolean;
+    onChange: () => void;
     disabled?: boolean;
-    size?: RadioButtonSize;
-};
+    size?: 'sm' | 'md' | 'lg';
+}
 
-export const RadioButton: React.FC<RadioButtonProps> = ({
-    label,
-    value,
-    checked = false,
-    onChange,
-    name,
-    disabled = false,
-    size = 'md',
-}) => {
-    const {
-        fontSize,
-        icon: radioSize,
-        gap,
-    } = sizeMap[size];
-
-    const radioId = React.useId();
-
+export const RadioButton = ({ label, name, value, checked, onChange, disabled = false }: RadioButtonProps) => {
     return (
-        <label
-            htmlFor={radioId}
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap,
-                fontSize,
-                color: disabled ? colors.text.muted : colors.text.primary,
-                cursor: disabled ? 'not-allowed' : 'pointer',
-                userSelect: 'none',
-            }}
-        >
-            <input
-                id={radioId}
-                type="radio"
-                value={value}
-                checked={checked}
-                onChange={onChange}
-                name={name}
-                disabled={disabled}
-                style={{
-                    width: radioSize,
-                    height: radioSize,
-                    borderRadius: '50%',
-                    accentColor: colors.brand.primary,
-                    cursor: disabled ? 'not-allowed' : 'pointer',
-                }}
-            />
+        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', color: colors.text.primary, opacity: disabled ? 0.5 : 1 }}>
+            <input type="radio" name={name} value={value} checked={checked} onChange={onChange} disabled={disabled} />
             {label}
         </label>
     );

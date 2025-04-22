@@ -1,60 +1,59 @@
+import React from 'react';
+import { Input, InputProps } from '../Input';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input } from '../Input';
 import { FiSearch, FiEye } from 'react-icons/fi';
 
-const meta: Meta<typeof Input> = {
-    title: 'Components/Form/Input',
+const meta: Meta<InputProps> = {
+    title: 'Form/Input',
     component: Input,
-    tags: ['autodocs'],
+    args: {
+        value: '',
+        placeholder: 'Escribe aquí',
+        disabled: false,
+        size: 'md',
+        onChange: () => { },
+    },
     argTypes: {
-        onChange: { action: 'changed' },
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof Input>;
 
-export const Small: Story = {
+type Story = StoryObj<InputProps>;
+
+export const Default: Story = {};
+
+export const WithIconLeft: Story = {
     args: {
-        placeholder: 'Input pequeño',
-        size: 'sm',
+        iconLeft: <FiSearch />,
     },
 };
 
-export const Medium: Story = {
+export const WithIconRight: Story = {
     args: {
-        placeholder: 'Input mediano',
-        size: 'md',
+        iconRight: <FiEye />,
+    },
+};
+
+export const WithBothIcons: Story = {
+    args: {
+        iconLeft: <FiSearch />,
+        iconRight: <FiEye />,
     },
 };
 
 export const Large: Story = {
     args: {
-        placeholder: 'Input grande',
         size: 'lg',
     },
 };
 
-export const WithLeftIcon: Story = {
+export const Small: Story = {
     args: {
-        placeholder: 'Buscar...',
-        size: 'md',
-        iconLeft: <FiSearch />,
-    },
-};
-
-export const WithRightIcon: Story = {
-    args: {
-        placeholder: 'Contraseña',
-        size: 'md',
-        iconRight: <FiEye />,
-    },
-};
-
-export const Disabled: Story = {
-    args: {
-        placeholder: 'Deshabilitado',
-        size: 'md',
-        disabled: true,
+        size: 'sm',
     },
 };

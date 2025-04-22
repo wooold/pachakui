@@ -1,18 +1,53 @@
+import React from 'react';
+import { InputPassword, InputPasswordProps } from '../InputPassword';
 import type { Meta, StoryObj } from '@storybook/react';
-import { InputPassword } from '../InputPassword';
+import { FiEye } from 'react-icons/fi'; // ✅ reemplazo correcto
 
-const meta: Meta<typeof InputPassword> = {
-    title: 'Components/Form/Input/Password',
+const meta: Meta<InputPasswordProps> = {
+    title: 'Form/InputPassword',
     component: InputPassword,
-    tags: ['autodocs'],
+    args: {
+        value: '',
+        placeholder: 'Contraseña',
+        disabled: false,
+        size: 'md',
+        onChange: () => { },
+        iconRight: <FiEye />, // ✅ ícono visible
+    },
+    argTypes: {
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
+    },
 };
 
 export default meta;
-type Story = StoryObj<typeof InputPassword>;
 
-export const Default: Story = {
+type Story = StoryObj<InputPasswordProps>;
+
+export const Default: Story = {};
+
+export const Filled: Story = {
     args: {
-        placeholder: 'Ingresa tu contraseña',
-        size: 'md',
+        value: 'secreta123',
+    },
+};
+
+export const Disabled: Story = {
+    args: {
+        disabled: true,
+    },
+};
+
+export const Large: Story = {
+    args: {
+        size: 'lg',
+    },
+};
+
+export const Small: Story = {
+    args: {
+        size: 'sm',
     },
 };

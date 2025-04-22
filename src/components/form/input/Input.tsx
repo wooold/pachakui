@@ -1,100 +1,53 @@
 import React from 'react';
-import { colors } from '@tokens';
-import { sizeMap } from '@utils/sizemap';
+import { colors } from '@tokens/colors';
 
-type InputSize = 'sm' | 'md' | 'lg';
-
-type InputProps = {
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+export interface InputProps {
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     disabled?: boolean;
-    size?: InputSize;
+    size?: 'sm' | 'md' | 'lg';
+    type?: string;
     iconLeft?: React.ReactNode;
     iconRight?: React.ReactNode;
-    type?: string;
-    name?: string;
-};
+}
 
-export const Input: React.FC<InputProps> = ({
+export const Input = ({
     value,
     onChange,
     placeholder,
     disabled = false,
     size = 'md',
+    type = 'text',
     iconLeft,
     iconRight,
-    type = 'text',
-    name,
-}) => {
-    const {
-        paddingX,
-        paddingY,
-        gap,
-        fontSize,
-        icon: iconSize,
-    } = sizeMap[size];
-
+}: InputProps) => {
     return (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: colors.neutral.background,
-                border: `1px solid ${colors.neutral.border}`,
-                borderRadius: '6px',
-                padding: `${paddingY} ${paddingX}`,
-                fontSize,
-                lineHeight: '1.5',
-                color: colors.text.primary,
-                gap,
-                cursor: disabled ? 'not-allowed' : 'text',
-                opacity: disabled ? 0.5 : 1,
-                transition: 'all 0.2s ease-in-out',
-            }}
-        >
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
             {iconLeft && (
-                <span
-                    style={{
-                        width: iconSize,
-                        height: iconSize,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                    }}
-                >
+                <span style={{ position: 'absolute', left: '12px', pointerEvents: 'none' }}>
                     {iconLeft}
                 </span>
             )}
-
             <input
                 type={type}
-                name={name}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
                 disabled={disabled}
                 style={{
-                    all: 'unset',
-                    flex: 1,
-                    fontSize,
-                    width: '100%',
+                    padding: '8px 12px',
+                    paddingLeft: iconLeft ? '36px' : '12px',
+                    paddingRight: iconRight ? '36px' : '12px',
+                    border: `1px solid ${colors.control.default}`,
+                    borderRadius: '4px',
                     color: colors.text.primary,
+                    opacity: disabled ? 0.5 : 1,
+                    width: '100%',
                 }}
             />
-
             {iconRight && (
-                <span
-                    style={{
-                        width: iconSize,
-                        height: iconSize,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                    }}
-                >
+                <span style={{ position: 'absolute', right: '12px', pointerEvents: 'none' }}>
                     {iconRight}
                 </span>
             )}

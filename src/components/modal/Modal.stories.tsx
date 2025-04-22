@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Modal } from './Modal';
-import { Button } from '../button/Button';
+import { Modal } from '@components/modal'; // ✅ uso de alias
+import { Button } from '@components/button/Button'; // ✅ ruta clara y sin conflictos
 
-const meta: Meta<typeof Modal> = {
-    title: 'Components/Overlay/Modal',
+const meta: Meta = {
+    title: 'Components/Modal',
     component: Modal,
-    tags: ['autodocs'],
 };
 
 export default meta;
-type Story = StoryObj<typeof Modal>;
+
+type Story = StoryObj;
 
 export const Default: Story = {
     render: () => {
@@ -18,11 +18,13 @@ export const Default: Story = {
 
         return (
             <>
-                <Button label="Abrir Modal" onClick={() => setIsOpen(true)} />
-
-                <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-                    <h2 style={{ marginBottom: '1rem' }}>Este es un modal ✨</h2>
-                    <p>Puedes hacer clic fuera para cerrarlo, o agregar botones aquí dentro.</p>
+                <Button onClick={() => setIsOpen(true)}>Abrir modal</Button>
+                <Modal
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    title="Título del modal"
+                >
+                    <p>Este es el contenido del modal.</p>
                 </Modal>
             </>
         );

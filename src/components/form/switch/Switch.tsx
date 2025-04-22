@@ -1,69 +1,61 @@
 import React from 'react';
-import { colors } from '@tokens';
+import { colors } from '@tokens/colors';
 import { sizeMap } from '@utils/sizemap';
 
-type SwitchSize = 'sm' | 'md' | 'lg';
-
-type SwitchProps = {
+export interface SwitchProps {
     checked: boolean;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: () => void;
     disabled?: boolean;
-    name?: string;
-    size?: SwitchSize;
-};
+    size?: 'sm' | 'md' | 'lg';
+}
 
-export const Switch: React.FC<SwitchProps> = ({
+export const Switch = ({
     checked,
     onChange,
     disabled = false,
-    name,
     size = 'md',
-}) => {
-    const { width, height } = sizeMap[size].switch;
-    const knob = sizeMap[size].icon;
-
-    const id = React.useId();
+}: SwitchProps) => {
+    const dimensions = sizeMap[size]?.switch ?? { width: '40px', height: '20px' };
 
     return (
         <label
-            htmlFor={id}
             style={{
-                position: 'relative',
-                display: 'inline-block',
-                width,
-                height,
-                backgroundColor: disabled
-                    ? colors.control.disabled
-                    : checked
-                        ? colors.control.on
-                        : colors.control.off,
-                borderRadius: '9999px',
+                display: 'inline-flex',
+                alignItems: 'center',
                 cursor: disabled ? 'not-allowed' : 'pointer',
-                opacity: disabled ? 0.7 : 1,
-                transition: 'background-color 0.2s ease-in-out',
+                opacity: disabled ? 0.5 : 1,
             }}
         >
+            <span
+                style={{
+                    width: dimensions.width,
+                    height: dimensions.height,
+                    backgroundColor: checked ? colors.control.default : colors.control.disabled,
+                    border: `1px solid ${colors.control.default}`,
+                    borderRadius: '999px',
+                    position: 'relative',
+                    transition: 'background-color 0.2s ease-in-out',
+                }}
+            >
+                <span
+                    style={{
+                        width: '50%',
+                        height: '100%',
+                        backgroundColor: 'white',
+                        borderRadius: '50%',
+                        position: 'absolute',
+                        top: 0,
+                        left: checked ? '50%' : '0',
+                        transition: 'left 0.2s ease-in-out',
+                    }}
+                />
+            </span>
             <input
-                id={id}
-                name={name}
                 type="checkbox"
                 checked={checked}
                 onChange={onChange}
                 disabled={disabled}
                 style={{ display: 'none' }}
-            />
-            <span
-                style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: checked ? `calc(100% - ${knob})` : '0',
-                    transform: 'translateY(-50%)',
-                    width: knob,
-                    height: knob,
-                    backgroundColor: colors.control.knob,
-                    borderRadius: '9999px',
-                    transition: 'left 0.2s ease-in-out',
-                }}
             />
         </label>
     );

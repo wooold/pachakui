@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
-import { Input } from './Input';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import React from 'react';
+import { Input, InputProps } from './Input';
 
-type InputPasswordProps = Omit<React.ComponentProps<typeof Input>, 'type' | 'iconRight'>;
+export interface InputPasswordProps extends InputProps {
+    iconRight?: React.ReactNode;
+}
 
-export const InputPassword: React.FC<InputPasswordProps> = (props) => {
-    const [visible, setVisible] = useState(false);
-
+export const InputPassword = ({ iconRight, ...props }: InputPasswordProps) => {
     return (
-        <Input
-            {...props}
-            type={visible ? 'text' : 'password'}
-            iconRight={
-                <span
-                    onClick={() => setVisible((v) => !v)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    {visible ? <FiEyeOff /> : <FiEye />}
-                </span>
-            }
-        />
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            <Input {...props} type="password" />
+            {iconRight && (
+                <span style={{ position: 'absolute', right: '12px' }}>{iconRight}</span>
+            )}
+        </div>
     );
 };

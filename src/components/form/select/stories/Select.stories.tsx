@@ -1,53 +1,55 @@
+import React from 'react';
+import { Select, SelectProps } from '../Select';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '../Select';
 
-const meta: Meta<typeof Select> = {
-    title: 'Components/Form/Select',
+const meta: Meta<SelectProps> = {
+    title: 'Form/Select',
     component: Select,
-    tags: ['autodocs'],
+    args: {
+        value: '',
+        disabled: false,
+        size: 'md',
+        onChange: () => { },
+        options: [
+            { label: 'Opción 1', value: '1' },
+            { label: 'Opción 2', value: '2' },
+            { label: 'Opción 3', value: '3' },
+        ],
+    },
     argTypes: {
-        onChange: { action: 'changed' },
+        size: {
+            control: { type: 'radio' },
+            options: ['sm', 'md', 'lg'],
+        },
     },
 };
 
 export default meta;
-type Story = StoryObj<typeof Select>;
 
-const options = [
-    { value: 'apple', label: '🍎 Apple' },
-    { value: 'banana', label: '🍌 Banana' },
-    { value: 'cherry', label: '🍒 Cherry' },
-];
+type Story = StoryObj<SelectProps>;
 
-export const Small: Story = {
+export const Default: Story = {};
+
+export const Disabled: Story = {
     args: {
-        options,
-        size: 'sm',
-        placeholder: 'Selecciona una fruta',
+        disabled: true,
     },
 };
 
-export const Medium: Story = {
+export const Preselected: Story = {
     args: {
-        options,
-        size: 'md',
-        placeholder: 'Selecciona una fruta',
+        value: '2',
     },
 };
 
 export const Large: Story = {
     args: {
-        options,
         size: 'lg',
-        placeholder: 'Selecciona una fruta',
     },
 };
 
-export const Disabled: Story = {
+export const Small: Story = {
     args: {
-        options,
-        size: 'md',
-        placeholder: 'Fruta deshabilitada',
-        disabled: true,
+        size: 'sm',
     },
 };

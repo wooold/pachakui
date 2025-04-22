@@ -1,43 +1,40 @@
-import { ReactNode } from 'react';
-import { colors, spacing, borders, shadows } from '@/tokens';
+import React from 'react';
 
-type ModalProps = {
+export interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
-    children: ReactNode;
-};
+    title?: string; // ✅ ahora está tipado correctamente
+    children: React.ReactNode;
+}
 
-export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
     if (!isOpen) return null;
 
     return (
         <div
             style={{
                 position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                zIndex: 999,
+                inset: 0,
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: spacing.md,
+                zIndex: 999,
             }}
             onClick={onClose}
         >
             <div
                 style={{
-                    backgroundColor: colors.neutral.white,
-                    padding: spacing.lg,
-                    borderRadius: borders.radius.lg,
-                    boxShadow: shadows.xl,
+                    backgroundColor: 'white',
+                    borderRadius: '8px',
+                    padding: '24px',
                     minWidth: '300px',
-                    maxWidth: '90%',
+                    maxWidth: '500px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
                 }}
-                onClick={(e) => e.stopPropagation()} // 🧠 Previene cierre al hacer clic dentro del modal
+                onClick={(e) => e.stopPropagation()}
             >
+                {title && <h2 style={{ marginBottom: '16px' }}>{title}</h2>}
                 {children}
             </div>
         </div>

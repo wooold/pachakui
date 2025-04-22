@@ -1,23 +1,28 @@
-import { spacing, typography, iconSize } from '@tokens';
+import { spacing } from '@tokens/spacing';
+import { typography } from '@tokens/typography';
+import { iconSize } from '@tokens/iconSize';
+import { borders } from '@tokens/borders';
 
 export const sizeMap = {
     sm: {
-        paddingX: spacing.sm,
-        paddingY: spacing.xs,
-        gap: spacing.sm,                   // para íconos, label, etc.
-        fontSize: typography.fontSize.sm,  // 14px
-        icon: iconSize.sm,                 // 16px
+        paddingX: spacing.md,
+        paddingY: spacing.sm,
+        gap: spacing.sm,
+        fontSize: typography.fontSize.sm,
+        icon: iconSize.sm,
+        borderRadius: borders.radius.md,
         switch: {
             width: '32px',
             height: '16px',
         },
     },
     md: {
-        paddingX: spacing.md,
-        paddingY: spacing.sm,
-        gap: spacing.md,                   // para íconos, label, etc.
-        fontSize: typography.fontSize.md,  // 16px
-        icon: iconSize.md,                 // 20px
+        paddingX: spacing.mdPlus,
+        paddingY: spacing.smPlus,
+        gap: spacing.smPlus,
+        fontSize: typography.fontSize.base,
+        icon: iconSize.md,
+        borderRadius: borders.radius.md,
         switch: {
             width: '40px',
             height: '20px',
@@ -26,12 +31,13 @@ export const sizeMap = {
     lg: {
         paddingX: spacing.lg,
         paddingY: spacing.md,
-        gap: spacing.lg,                   // para íconos, label, etc.
-        fontSize: typography.fontSize.lg,  // 18px
-        icon: iconSize.lg,                 // 24px
+        gap: spacing.md,
+        fontSize: typography.fontSize.lg,
+        icon: iconSize.lg,
+        borderRadius: borders.radius.md,
         switch: {
             width: '48px',
             height: '24px',
         },
     },
-} as const;
+};
