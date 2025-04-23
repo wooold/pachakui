@@ -8,3 +8,5 @@ export * from './iconSize';
 export * from './typography';
 export * from './borders'; // ✅ corregido aquí
 export * from './shadow';
+
+export * from './getColors';

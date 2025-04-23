@@ -103,3 +103,5 @@ export const darkColors: ColorRoles = {
   },
   transparent: primitives.transparent,
 }
+
+export const colors = lightColors;
