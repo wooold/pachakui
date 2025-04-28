@@ -16,6 +16,7 @@ export default {
       '@tokens': new URL('../src/tokens', import.meta.url).pathname,
       '@icons': new URL('../src/icons', import.meta.url).pathname,
       '@utils': new URL('../src/utils', import.meta.url).pathname, // 🛠️ alias faltante
+      '@context': new URL('../src/context', import.meta.url).pathname,
     };
 
     // ❌ Ya no necesitamos viteTsconfigPaths, evitamos conflicto con ESM/CJS

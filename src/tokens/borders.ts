@@ -7,8 +7,8 @@ export const borders = {
   radius: {
     none: '0px',
     sm: '4px',
-    md: '6px',
-    lg: '12px',
+    md: '8px',
+    lg: '16px',
     full: '9999px', // para chips, toggles o circulares
   },
   width: {

@@ -1,4 +1,5 @@
 /* 🌐 global.css - Versión limpia y optimizada para Pachakui */
+/* 📁 src/styles/global.css */
 
 *,
 *::before,
@@ -44,4 +45,26 @@ textarea {
 ul,
 ol {
   list-style: none;
+}
+
+/* 🔵 Reset: Quitamos outline feo en todos los elementos interactivos */
+button,
+[role="button"],
+input,
+select,
+textarea,
+a {
+  outline: none;
+}
+
+/* 🌀 Aplicamos nuestro focus visual bonito solo cuando es focus-visible */
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  /* 🎯 Token dinámico manejado por ThemeProvider */
 }

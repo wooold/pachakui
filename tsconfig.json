@@ -40,6 +40,9 @@
       ],
       "@icons/*": [
         "icons/*"
+      ],
+      "@context/*": [
+        "context/*"
       ]
     }
   },

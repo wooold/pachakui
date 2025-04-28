@@ -4,7 +4,7 @@
  */
 
 export const iconSize = {
-    sm: '16px',
-    md: '20px',
-    lg: '24px',
+    sm: '14px',
+    md: '16px',
+    lg: '18px',
 };

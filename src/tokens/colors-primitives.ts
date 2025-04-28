@@ -54,8 +54,8 @@ export const primitives = {
     skyGradient: '#5F84F6',
 
     // ☁️ Backgrounds & Surfaces (Light Mode)
-    backgroundBase: '#FFFFFF',      // App background
-    surface: '#F9FAFB',             // Cards, containers
+    backgroundBase: '#F9FAFB',      // App background
+    surface: '#FFFFFF',             // Cards, containers
     overlay: 'rgba(0, 0, 0, 0.04)', // Tooltips, modals
 
     // 🌒 Backgrounds & Surfaces (Dark Mode)
