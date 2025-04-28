@@ -77,6 +77,13 @@ export const textStyles = {
     fontWeight: fontWeights.semibold,
     letterSpacing: letterSpacings.normal,
   },
+  bodyLarge: {
+    fontFamily: fontFamilies.sans,
+    fontSize: fontSizes.lg,             // 18px
+    lineHeight: lineHeights.normal,     // 27px
+    fontWeight: fontWeights.regular,
+    letterSpacing: letterSpacings.normal,
+  },
   bodyBase: {
     fontFamily: fontFamilies.sans,
     fontSize: fontSizes.md,             // 16px

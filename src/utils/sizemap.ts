@@ -1,43 +1,41 @@
+// 📁 src/utils/sizemap.ts
+
 /**
- * 📏 sizeMap.ts
+ * 🎛️ sizeMap
  * Mapea tamaños visuales por escala (sm, md, lg) para usar en componentes.
- * Usa tokens desde spacing, fontSizes, iconSize, gap y borders con acceso correcto.
  */
 
 import { spacing } from '@/tokens/spacing';
 import { fontSizes } from '@/tokens/typography';
 import { iconSize } from '@/tokens/iconSize';
-import { gap } from '@/tokens/gap';
 import { borders } from '@/tokens/borders';
 
 export const sizeMap = {
-    // 🟦 Tamaño pequeño
     sm: {
+        paddingX: spacing.smPlus,
+        paddingY: spacing.xs,
+        fontSize: fontSizes.sm,
+        gap: spacing.sm,            // ✅ Ahora directamente spacing.sm (8px)
+        iconSize: iconSize.sm,
+        borderRadius: borders.radius.md,
+        minHeight: '32px', // ✅ Agregado
+    },
+    md: {
         paddingX: spacing.md,
         paddingY: spacing.sm,
-        fontSize: fontSizes.sm,
-        gap: gap.sm,
-        iconSize: iconSize.sm,
-        borderRadius: borders.radius.md, // ✅ corregido
-    },
-
-    // 🟩 Tamaño mediano (default)
-    md: {
-        paddingX: spacing.lg,
-        paddingY: spacing.md,
         fontSize: fontSizes.md,
-        gap: gap.md,
+        gap: spacing.sm,            // ✅ Igual aquí: 8px
         iconSize: iconSize.md,
-        borderRadius: borders.radius.md, // ✅ corregido
+        borderRadius: borders.radius.md,
+        minHeight: '40px', // ✅ Agregado
     },
-
-    // 🟥 Tamaño grande
     lg: {
-        paddingX: spacing.xl,
-        paddingY: spacing.lg,
+        paddingX: spacing.mdPlus,
+        paddingY: spacing.sm,
         fontSize: fontSizes.lg,
-        gap: gap.lg,
+        gap: spacing.sm,            // ✅ También 8px
         iconSize: iconSize.lg,
-        borderRadius: borders.radius.lg, // ✅ corregido
+        borderRadius: borders.radius.md,
+        minHeight: '48px', // ✅ Agregado
     },
 };
