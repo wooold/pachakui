@@ -3,67 +3,65 @@
 import React from 'react';
 import { Button } from '../Button';
 import type { Meta, StoryObj } from '@storybook/react';
-import { useTheme } from '@context/ThemeProvider'; // ✅ Detectamos el tema (light/dark)
+import { useTheme } from '@context/ThemeProvider';
+import { Container } from '@/components/layout/Container'; // ✅ Nuevo
+import { Section } from '@/components/layout/Section'; // ✅ Nuevo
 
 const meta: Meta = {
-    title: 'Components/ButtonGroup',
+    title: 'Components/Buttons/ButtonGroup',
     component: Button,
 };
 
 export default meta;
 type Story = StoryObj;
 
-/**
- * 🎛️ Grupo de botones en todas sus variantes visuales
- * ✅ Se adapta al cambio de tema
- */
+/* 🔵 Mixed Group */
 export const MixedGroup: Story = {
     render: () => {
         const { mode } = useTheme();
         return (
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <Button variant="primary">Guardar</Button>
-                <Button variant="secondary">Cancelar</Button>
-            </div>
+            <Container>
+                <Section title="Mixed Group">
+                    <div style={{ display: 'flex', gap: '16px' }}>
+                        <Button variant="primary">Guardar</Button>
+                        <Button variant="secondary">Cancelar</Button>
+                    </div>
+                </Section>
+            </Container>
         );
     },
 };
 
-/**
- * 🧯 Grupo con todos los botones deshabilitados
- * ✅ Útil para probar estados de "bloqueo"
- */
+/* 🔵 Disabled Group */
 export const DisabledGroup: Story = {
     render: () => {
         const { mode } = useTheme();
         return (
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <Button variant="primary" disabled>
-                    Guardar
-                </Button>
-                <Button variant="secondary" disabled>
-                    Cancelar
-                </Button>
-            </div>
+            <Container>
+                <Section title="Disabled Group">
+                    <div style={{ display: 'flex', gap: '16px' }}>
+                        <Button variant="primary" disabled>Guardar</Button>
+                        <Button variant="secondary" disabled>Cancelar</Button>
+                    </div>
+                </Section>
+            </Container>
         );
     },
 };
 
-/**
- * ⏳ Grupo en estado de carga (loading)
- */
+/* 🔵 Loading Group */
 export const LoadingGroup: Story = {
     render: () => {
         const { mode } = useTheme();
         return (
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <Button variant="primary" loading>
-                    Cargando...
-                </Button>
-                <Button variant="secondary" loading>
-                    Esperando...
-                </Button>
-            </div>
+            <Container>
+                <Section title="Loading Group">
+                    <div style={{ display: 'flex', gap: '16px' }}>
+                        <Button variant="primary" loading>Cargando...</Button>
+                        <Button variant="secondary" loading>Esperando...</Button>
+                    </div>
+                </Section>
+            </Container>
         );
     },
 };

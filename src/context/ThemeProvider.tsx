@@ -3,8 +3,8 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
-import { colors } from '@/tokens/colors';
-import { useSystemTheme } from '@/hooks/useSystemTheme'; // 🎯 Hook que detecta el tema del sistema operativo
+import { colors } from '@/tokens/theme/colors/colors';
+import { useSystemTheme } from '@/context/useSystemTheme'; // 🎯 Hook que detecta el tema del sistema operativo
 
 // 🎯 Definimos tipos disponibles
 type ThemeMode = 'light' | 'dark';

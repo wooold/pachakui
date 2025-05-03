@@ -3,15 +3,15 @@
 import type { Preview } from '@storybook/react';
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider, useTheme } from '../src/context/ThemeProvider';
-import { colors } from '../src/tokens/colors'; // 🎨 Tokens de colores PachakUI
+import { colors } from '../src/tokens/theme/colors'; // 🎨 Tokens de colores PachakUI
 
 // 🎯 Nuevo contexto para manejar el tema manualmente desde el Toolbar de Storybook
 const withThemeProvider = (Story: any, context: any) => {
   return (
-    <ThemeProvider themeFromStorybook={context.globals.theme}>
-      <BackgroundUpdater />
-      <Story {...context.args} />
-    </ThemeProvider>
+    <ThemeProvider themeFromStorybook= { context.globals.theme } >
+    <BackgroundUpdater />
+    < Story {...context.args } />
+      </ThemeProvider>
   );
 };
 

@@ -3,7 +3,7 @@
 // 📁 src/components/button/Button.tsx
 
 import React, { useState, useEffect } from 'react';
-import { buttonVariantMap } from './variantMap';
+import { buttonVariantMap } from './variants/variantMap';
 import { sizeMap } from '@utils/sizemap';
 import { useTheme } from '@/context/ThemeProvider';
 import { useFocusRing } from '@/hooks/useFocusRing'; // 🎯 Nuevo hook para manejar focus correctamente

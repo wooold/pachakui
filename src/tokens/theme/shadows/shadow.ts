@@ -15,4 +15,9 @@ export const shadows = {
 
   // 🔵 Focus Ring accesible
   focus: '0 0 0 3px rgba(72, 135, 251, 0.4)',
-};
+} as const; // 🔥 Protege los tokens contra mutaciones accidentales
+
+/**
+ * 📚 Tipos derivados automáticos
+ */
+export type ShadowLevel = keyof typeof shadows;

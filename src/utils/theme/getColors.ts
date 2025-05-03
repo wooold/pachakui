@@ -1,6 +1,6 @@
 // 📁 src/utils/theme/getColors.ts
 
-import { colors } from '@tokens/colors'; // ✅ Ahora solo importamos colors unificado
+import { colors } from '@/tokens/theme/colors/colors'; // ✅ Ahora solo importamos colors unificado
 
 // 🎯 Definimos los modos disponibles
 export type ThemeMode = 'light' | 'dark';

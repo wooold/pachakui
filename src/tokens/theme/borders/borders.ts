@@ -16,4 +16,10 @@ export const borders = {
     thin: '1px',
     thick: '2px',
   },
-};
+} as const; // 🔥 Tipado fuerte e inmutabilidad garantizada
+
+/**
+ * 📚 Tipos derivados automáticos
+ */
+export type BorderRadius = keyof typeof borders.radius;
+export type BorderWidth = keyof typeof borders.width;

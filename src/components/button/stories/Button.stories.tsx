@@ -3,10 +3,12 @@
 import React from 'react';
 import { Button, ButtonProps } from '../Button';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Lock, ArrowRight } from 'lucide-react'; // 🎯 Importamos íconos reales de lucide-react
+import { Lock, ArrowRight } from 'lucide-react';
+import { Container } from '@/components/layout/Container'; // ✅ Nuevo
+import { Section } from '@/components/layout/Section'; // ✅ Nuevo
 
 const meta: Meta<ButtonProps> = {
-  title: 'Components/Button',
+  title: 'Components/Buttons/Buttons',
   component: Button,
   args: {
     children: 'Botón Base',
@@ -16,115 +18,124 @@ const meta: Meta<ButtonProps> = {
     loading: false,
   },
   argTypes: {
-    variant: {
-      control: { type: 'radio' },
-      options: ['primary', 'secondary'],
-    },
-    size: {
-      control: { type: 'radio' },
-      options: ['sm', 'md', 'lg'],
-    },
-    disabled: {
-      control: { type: 'boolean' },
-    },
-    loading: {
-      control: { type: 'boolean' },
-    },
-    iconLeft: { control: false }, // 🎯 No editable desde UI
-    iconRight: { control: false }, // 🎯 No editable desde UI
+    variant: { control: { type: 'radio' }, options: ['primary', 'secondary'] },
+    size: { control: { type: 'radio' }, options: ['sm', 'md', 'lg'] },
+    disabled: { control: { type: 'boolean' } },
+    loading: { control: { type: 'boolean' } },
+    iconLeft: { control: false },
+    iconRight: { control: false },
   },
 };
 
 export default meta;
 type Story = StoryObj<ButtonProps>;
 
-/**
- * 🚀 Botón por defecto
- */
-export const Default: Story = {};
+/* 🔵 Story principal */
+export const Default: Story = {
+  render: (args) => (
+    <Container>
+      <Section title="Default">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+};
 
-/**
- * 👆 Hover
- */
+/* 🔵 Hover manual */
 export const Hover: Story = {
-  args: {
-    children: 'Hover manual',
-  },
-  parameters: {
-    pseudo: { hover: true },
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Hover">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { children: 'Hover manual' },
+  parameters: { pseudo: { hover: true } },
 };
 
-/**
- * 🔵 Focus
- */
+/* 🔵 Focus manual */
 export const Focus: Story = {
-  args: {
-    children: 'Focus manual',
-  },
-  parameters: {
-    pseudo: { focus: true },
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Focus">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { children: 'Focus manual' },
+  parameters: { pseudo: { focus: true } },
 };
 
-/**
- * 🎯 Active
- */
+/* 🔵 Active manual */
 export const Active: Story = {
-  args: {
-    children: 'Active manual',
-  },
-  parameters: {
-    pseudo: { active: true },
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Active">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { children: 'Active manual' },
+  parameters: { pseudo: { active: true } },
 };
 
-/**
- * 🔒 Botón deshabilitado
- */
+/* 🔵 Disabled */
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Disabled">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { disabled: true },
 };
 
-/**
- * ⏳ Botón en loading
- */
+/* 🔵 Loading */
 export const Loading: Story = {
-  args: {
-    loading: true,
-    children: 'Cargando...',
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Loading">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { loading: true, children: 'Cargando...' },
 };
 
-/**
- * 🟦 Variante Secondary
- */
+/* 🔵 Secondary */
 export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Botón Secundario',
-    loading: false,
-  },
+  render: (args) => (
+    <Container>
+      <Section title="Secondary">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { variant: 'secondary', children: 'Botón Secundario', loading: false },
 };
 
-/**
- * 🔒 Botón con ícono a la izquierda
- */
+/* 🔵 Con Icono Izquierdo */
 export const WithIconLeft: Story = {
-  args: {
-    children: 'Iniciar sesión',
-    iconLeft: Lock, // 🎯 Icono a la izquierda oficial
-  },
+  render: (args) => (
+    <Container>
+      <Section title="With Icon Left">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { children: 'Iniciar sesión', iconLeft: Lock },
 };
 
-/**
- * ➡️ Botón con ícono a la derecha
- */
+/* 🔵 Con Icono Derecho */
 export const WithIconRight: Story = {
-  args: {
-    children: 'Continuar',
-    iconRight: ArrowRight, // 🎯 Ahora usamos el icono oficial
-  },
+  render: (args) => (
+    <Container>
+      <Section title="With Icon Right">
+        <Button {...args} />
+      </Section>
+    </Container>
+  ),
+  args: { children: 'Continuar', iconRight: ArrowRight },
 };

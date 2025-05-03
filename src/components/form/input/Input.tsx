@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '@tokens/colors';
+import { colors } from '@/tokens/theme/colors/colors';
 
 export interface InputProps {
     value: string;
