@@ -5,10 +5,10 @@
  * Mapea tamaños visuales por escala (sm, md, lg) para usar en componentes.
  */
 
-import { spacing } from '@/tokens/spacing';
-import { fontSizes } from '@/tokens/typography';
-import { iconSize } from '@/tokens/iconSize';
-import { borders } from '@/tokens/borders';
+import { spacing } from '@/tokens/theme/spacing/spacing';
+import { fontSizes } from '@/tokens/theme/typography/typography';
+import { iconSize } from '@/tokens/theme/icon/iconSize';
+import { borders } from '@/tokens/theme/borders/borders';
 
 export const sizeMap = {
     sm: {

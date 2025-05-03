@@ -1,7 +1,7 @@
 // 📁 src/hooks/useFocusRing.tsx
 
 import { useState, useEffect, useCallback } from 'react';
-import { shadows } from '@/tokens/shadow'; // 🎯 Importamos el token focus
+import { shadows } from '@/tokens/theme/shadows/shadow'; // 🎯 Importamos el token focus
 
 /**
  * 🎯 Hook que maneja focus visual accesible (Keyboard vs Mouse)

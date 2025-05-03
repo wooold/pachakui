@@ -1,8 +1,12 @@
-// 📁 src/tokens/colors.ts
+// 📁 src/tokens/theme/colors/colors.ts
 
 import { primitives } from './colors-primitives'; // ✅ Importamos los primitivos
 
-// 🎯 Estructura de colores separados por tema: light y dark
+/**
+ * 🎨 Colores Semánticos - PachakUI
+ * Definimos roles de colores según el modo Light y Dark.
+ * Utiliza primitives y soporta escalabilidad.
+ */
 export const colors = {
   light: {
     text: {
@@ -46,7 +50,9 @@ export const colors = {
       knob: primitives.gray0,
       disabled: primitives.gray100,
     },
-    transparent: primitives.transparent,
+    transparent: {
+      base: primitives.transparent,
+    },
   },
 
   dark: {
@@ -91,6 +97,14 @@ export const colors = {
       knob: primitives.gray700,
       disabled: primitives.gray800,
     },
-    transparent: primitives.transparent,
+    transparent: {
+      base: primitives.transparent,
+    },
   },
-};
+} as const; // 🔥 Protegemos la estructura de mutaciones accidentales
+
+/**
+ * 🎯 Tipado automático para uso en componentes
+ * Permite autocompletar y prevenir errores en props.
+ */
+export type ColorTheme = typeof colors.light;

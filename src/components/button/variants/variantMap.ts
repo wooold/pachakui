@@ -1,7 +1,7 @@
 // src/components/button/variantMap.ts
 
-import { colors } from '@/tokens/colors';
-import { shadows } from '@/tokens/shadow';
+import { colors } from '@/tokens/theme/colors/colors';
+import { shadows } from '@/tokens/theme/shadows/shadow';
 
 /**
  * 🗺️ Mapeo visual de los estilos del botón (por variant y theme mode)
@@ -27,8 +27,8 @@ export const buttonVariantMap = {
                 default: colors.light.text.onBrand,
                 hover: colors.light.text.onBrand,
                 active: colors.light.text.onBrand,
-                disabled: colors.light.text.disabled,
-                loading: colors.light.text.disabled,
+                disabled: colors.light.text.onBrand,
+                loading: colors.light.text.onBrand,
             },
             focusRing: shadows.focus,
         },

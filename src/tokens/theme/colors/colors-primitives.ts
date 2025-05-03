@@ -1,3 +1,4 @@
+// 📁 src/tokens/theme/colors-primitives.ts
 /**
  * 🎨 Color Primitives - PachakUI Design System
  * Paleta atómica escalable con soporte para light y dark mode.
@@ -34,7 +35,7 @@ export const primitives = {
     gray900: '#222F3E',   // Charcoal
     gray950: '#0D1117',   // True black for dark backgrounds
 
-    // ✅ Feedback: Success, Info, Warning, Error
+    // ✅ Feedback: Success, Info, Warning, Error (expandible en el futuro)
     green100: '#D6F5E4',  // Light for dark bg
     green500: '#28C76F',  // Success
 
@@ -56,18 +57,18 @@ export const primitives = {
     // ☁️ Backgrounds & Surfaces (Light Mode)
     backgroundBase: '#F9FAFB',      // App background
     surface: '#FFFFFF',             // Cards, containers
-    overlay: 'rgba(0, 0, 0, 0.04)', // Tooltips, modals
+    overlay: 'rgba(0, 0, 0, 0.04)', // Light mode overlay (only behind modals, etc.)
 
     // 🌒 Backgrounds & Surfaces (Dark Mode)
     backgroundDark: '#121212',          // App background in dark
     surfaceDark: '#1E1E1E',             // Cards in dark
-    overlayDark: 'rgba(255, 255, 255, 0.06)', // Soft light overlay
+    overlayDark: 'rgba(255, 255, 255, 0.06)', // Dark mode overlay
 
     // 🖋 Text on dark (used in semantic mappings)
     textOnDark: '#F5F5F5',        // High contrast text on dark bg
     mutedOnDark: '#C2C2C2',       // Secondary text
 
     // 🎭 Utility
-    transparent: 'transparent',
+    transparent: 'rgba(255, 255, 255, 0)',
     current: 'currentColor',
-};
+} as const; // 🔥 Garantiza inmutabilidad y tipos literales automáticos
